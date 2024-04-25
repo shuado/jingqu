@@ -17,6 +17,8 @@
     "@vueuse/core": "^10.7.0",
     "@wangeditor/editor": "^5.1.23",
     "@wangeditor/editor-for-vue": "^5.1.12",
+    "@yolion/avue": "^3.4.1",
+    "avue-plugin-ueditor": "1.0.3",
     "axios": "^0.27.2",
     "crypto-js": "^4.1.1",
     "dayjs": "^1.11.10",

@@ -280,6 +280,7 @@ function deleted(config) {
 }
 
 export default {
+  axios,
   get,
   post,
   downloadPost,
