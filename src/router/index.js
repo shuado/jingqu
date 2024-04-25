@@ -7,7 +7,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import NProgress from 'nprogress'
 import 'nprogress/nprogress.css'
 
-// import System from '@/router/moudles/system'
+import Order from '@/router/moudles/order'
 import { GlobalStore } from '@/stores/modules/global'
 import { useMenuStore } from '@/stores/modules/menu'
 import { getMenuList } from '@/api/menuApi'
@@ -44,9 +44,9 @@ const routes = [
   {
     path: '/:pathMatch(.*)*',
     component: () => import('@/views/errorPage/index.vue')
-  }
+  },
+  ...Order
 ]
-
 
 // 初始化路由
 let router = createRouter({
@@ -60,12 +60,8 @@ router.beforeEach(async (to, from, next) => {
   NProgress.start()
   const globalStore = GlobalStore()
 
-  // 免密登录跳转
-  if (to.path === '/loginAuth') return next()
-
   // 2. 是否跳转登陆页
   if (to.path.toLocaleLowerCase() === '/login') {
-    // if (globalStore.isLogin) return next({ path: globalStore.user === 'PERSONNEL' ? '/system' : '/reduce' })
     return next()
   }
 
@@ -75,15 +71,17 @@ router.beforeEach(async (to, from, next) => {
     return next({ path: '/login', replace: true })
   }
 
+  if (to.meta && to.meta.authority && !globalStore.isLogin) return next({ path: '/login', replace: true })
+
   // 4. 判断是否是登陆状态
   if (!globalStore.isLogin) return next({ path: '/login', replace: true })
 
   // 5. 判断是否有路由权限
-  const menuStore = useMenuStore()
-  if (menuStore.userRoutes.length <= 0) {
-    await getMenuList()
-    return next({ ...to, replace: true })
-  }
+  // const menuStore = useMenuStore()
+  // if (menuStore.userRoutes.length <= 0) {
+  //   await getMenuList()
+  //   return next({ ...to, replace: true })
+  // }
 
   // 6. 页面跳转
   next()
