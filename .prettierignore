@@ -1,0 +1,10 @@
+/dist/*
+.local
+.output.js
+auto-imports.d.ts
+/node_modules/**
+
+**/*.svg
+**/*.sh
+
+/public/*

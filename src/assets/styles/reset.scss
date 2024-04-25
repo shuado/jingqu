@@ -1,0 +1,89 @@
+* {
+  box-sizing: border-box;
+}
+html {
+  width: 100%;
+  height: 100%;
+  min-width: 1366px;
+  min-height: 768px;
+}
+body {
+  width: 100%;
+  height: 100%;
+  font: 12px/1.5 Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB, Microsoft YaHei, SimSun, sans-serif;
+}
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+hr,
+p,
+blockquote,
+dl,
+dt,
+dd,
+ul,
+ol,
+li,
+input,
+textarea,
+th,
+td {
+  margin: 0;
+  padding: 0;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+ol,
+ul {
+  list-style: none;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: 100%;
+  font-weight: normal;
+}
+a {
+  text-decoration: none;
+  background-color: transparent;
+}
+a:hover,
+a:active {
+  outline-width: 0;
+  text-decoration: none;
+}
+img {
+  border-style: none;
+}
+.arco-checkbox-disabled.arco-checkbox-checked .arco-checkbox-icon,
+.arco-checkbox-disabled.arco-checkbox-checked:hover .arco-checkbox-icon {
+  background-color: rgba(168, 170, 177, 1) !important;
+}
+
+.reduction-content .arco-select-dropdown {
+  background-color: rgba(12, 38, 55, 0.8);
+  border: none;
+}
+.reduction-content .arco-select-dropdown .arco-select-option {
+  background-color: transparent;
+  color: #fff;
+  font-size: 0.16rem;
+}
+
+.home-template .arco-select-dropdown .arco-select-option {
+  font-size: 0.12rem;
+}
+.reduction-content .arco-select-dropdown .arco-select-option-active,
+.reduction-content .arco-select-dropdown .arco-select-option:not(.arco-select-dropdown .arco-select-option-disabled):hover {
+  background-color: rgba(34, 104, 116, 0.1);
+  color: #c0f5ff;
+}

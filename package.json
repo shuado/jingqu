@@ -1,0 +1,80 @@
+{
+  "name": "jingqu",
+  "private": true,
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore",
+    "preview": "vite preview",
+    "prettier": "prettier --write .",
+    "prepare": "husky install",
+    "commit": "git pull && git add -A && cz"
+  },
+  "dependencies": {
+    "@amap/amap-jsapi-loader": "^1.0.1",
+    "@kjgl77/datav-vue3": "^1.2.2",
+    "@vueuse/core": "^10.7.0",
+    "@wangeditor/editor": "^5.1.23",
+    "@wangeditor/editor-for-vue": "^5.1.12",
+    "axios": "^0.27.2",
+    "crypto-js": "^4.1.1",
+    "dayjs": "^1.11.10",
+    "echarts": "^5.3.2",
+    "element-plus": "^2.2.5",
+    "element-resize-detector": "^1.2.4",
+    "js-base64": "^3.7.5",
+    "lint-staged": "^13.0.3",
+    "lodash-es": "^4.17.21",
+    "lottie-web": "^5.10.2",
+    "mitt": "^3.0.0",
+    "normalize.css": "^8.0.1",
+    "nprogress": "^0.2.0",
+    "pinia": "^2.0.14",
+    "pinia-plugin-persistedstate": "^3.1.0",
+    "vue": "^3.2.36",
+    "vue-baidu-map-3x": "^1.0.32",
+    "vue-cropper": "^0.5.10",
+    "vue-dompurify-html": "^4.0.0",
+    "vue-loader": "^17.0.0",
+    "vue-router": "^4.0.15",
+    "vue-virtual-scroller": "2.0.0-beta.8"
+  },
+  "devDependencies": {
+    "@arco-design/web-vue": "^2.32.0",
+    "@commitlint/cli": "^17.0.2",
+    "@commitlint/config-conventional": "^17.0.2",
+    "@typescript-eslint/parser": "^5.36.1",
+    "@vitejs/plugin-vue": "^2.3.3",
+    "@vue/compiler-sfc": "^3.2.37",
+    "@vue/eslint-config-prettier": "^7.0.0",
+    "commitizen": "^4.2.4",
+    "cz-conventional-changelog": "^3.3.0",
+    "cz-customizable": "^6.3.0",
+    "eslint": "^8.5.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-vue": "^8.2.0",
+    "husky": "^8.0.0",
+    "prettier": "^2.7.1",
+    "sass": "^1.52.1",
+    "typescript": "^5.2.2",
+    "unplugin-auto-import": "^0.11.2",
+    "vite": "^2.9.9",
+    "vite-plugin-compression": "^0.5.1"
+  },
+  "config": {
+    "commitizen": {
+      "path": "node_modules/cz-customizable"
+    }
+  },
+  "lint-staged": {
+    "src/**/*.{less,scss,css}": [
+      "stylelint --fix --syntax=less",
+      "git add ."
+    ],
+    "src/**/*.{js,ts,tsx,vue}": [
+      "git add ."
+    ]
+  }
+}

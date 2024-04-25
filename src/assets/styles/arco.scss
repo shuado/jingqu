@@ -1,0 +1,109 @@
+/**输入框溢出隐藏显示...*/
+@import './reset.scss';
+
+.arco-input,
+input {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+/**复选框，单选框与文本对齐处理*/
+.arco-checkbox-group,
+.arco-radio-group {
+  margin-top: 5px;
+}
+
+/*相邻按钮的间距*/
+.arco-btn + .arco-btn {
+  margin-left: 12px;
+}
+
+/*按钮圆角*/
+.arco-btn {
+  border-radius: 4px !important;
+  min-width: 80px;
+}
+
+.btnType {
+  padding: 0 4px !important;
+  margin: 0;
+  min-width: 40px;
+}
+
+.btnTypeDel {
+  padding: 0 4px !important;
+  margin: 0;
+  min-width: 40px;
+  color: rgba(221, 49, 36, 1) !important;
+}
+/**统一背景色*/
+.arco-input-wrapper,
+.arco-select-view,
+.arco-picker,
+.arco-textarea-wrapper,
+.arco-upload-picture-card {
+  background-color: inherit !important;
+  border: 1px solid rgb(229, 229, 229) !important;
+  border-radius: 4px;
+}
+.arco-input-disabled,
+.arco-select-view-disabled,
+.arco-picker-disabled {
+  background-color: var(--color-fill-2) !important;
+}
+
+.arco-input-focus,
+.arco-select-view-focus,
+.arco-picker-focused,
+.arco-textarea-wrapper-focus {
+  border-color: rgb(22, 93, 255) !important;
+}
+.arco-input-error,
+.arco-textarea-error,
+.arco-select-view-error,
+.arco-picker-error {
+  border-color: rgb(var(--danger-6)) !important;
+}
+.cla-org .arco-tree-node-title-text {
+  max-width: 300px !important;
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.overview .arco-panel-month .arco-picker-header {
+  pointer-events: none;
+}
+
+.overview .arco-panel-month .arco-picker-header-icon {
+  display: none;
+}
+
+.arco-drawer-title {
+  width: 100%;
+}
+
+/**
+表单项下边距
+ */
+.arco-form-item {
+  margin-bottom: 24px;
+}
+
+/**弹出框关闭icon尺寸统一设置 */
+.arco-modal-close-btn,
+.arco-drawer-close-btn {
+  font-size: 18px !important;
+  color: rgba(68, 68, 68, 1) !important;
+}
+
+/** 图片上传样式 **/
+.arco-upload-list-picture {
+  width: 100px !important;
+  height: 100px !important;
+}
+.arco-upload-picture-card {
+  width: 100px !important;
+  height: 100px !important;
+}
