@@ -262,7 +262,7 @@ export default {
   user-select: none;
   -moz-user-select: none;
   -webkit-user-select: none;
-  background-color: rgba(22, 93, 255, 1);
+  // background-color: rgba(22, 93, 255, 1);
 
   .theme-dark {
     background-color: $theme-menu-dark-color;

@@ -9,7 +9,7 @@ $default-background: #f5f8ff;
 // 菜单背景色
 $theme-menu-color: #fff;
 // 深色主题色
-$theme-dark-color: rgba(22, 93, 255, 1);
+$theme-dark-color: rgb(49, 49, 49);
 
 // 左侧菜单展开时的宽度
 $menu-left-open-width: 224px;
@@ -67,7 +67,7 @@ $device-phone: 500px;
   position: relative;
   &:hover {
     &::before {
-      content: '';
+      content: "";
       position: absolute;
       left: 0;
       right: 0;
