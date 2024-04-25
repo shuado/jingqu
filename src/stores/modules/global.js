@@ -14,7 +14,8 @@ export const GlobalStore = defineStore({
   id: 'GlobalState',
 
   state: () => ({
-    user: '',
+    // user: '',
+    user: 'PERSONNEL',
     isLogin: false,
     token: '',
     expirationTime: '',

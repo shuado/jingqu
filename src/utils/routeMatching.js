@@ -23,28 +23,19 @@ export async function routerMatch(allowRouters, powers, USER_TYPE) {
      * @param pathAddress 上层路由地址
      */
 
-    const noRouter = new Set([
-      'System',
-      'BigSetting',
-      'ReduceCarbon',
-      'CarbonEmission',
-      'Collaborative',
-      'Engineering',
-      'Demonstration',
-      'Environment'
-    ])
+    const noRouter = new Set(['Order'])
 
     function createRouter(permission, type = true, pathAddress) {
       for (let i = permission.length - 1; i >= 0; i--) {
         let item = permission[i]
         // 根据权限执行对应的权限删除操作
         /*相关操作： 略*/
-        if (USER_TYPE === 'PERSONNEL') {
-          if (!noRouter.has(item.name)) {
-            permission.splice(i, 1)
-            continue
-          }
-        }
+        // if (USER_TYPE === 'PERSONNEL') {
+        //   if (!noRouter.has(item.name)) {
+        //     permission.splice(i, 1)
+        //     continue
+        //   }
+        // }
 
         // 判断是否为顶层，并拼接路由地址并为有子集的路由重定向
         if (!type) {

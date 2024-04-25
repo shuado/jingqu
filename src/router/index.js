@@ -45,8 +45,9 @@ const routes = [
     path: '/:pathMatch(.*)*',
     component: () => import('@/views/errorPage/index.vue')
   },
-  ...Order
+  // ...Order
 ]
+export const allRoutes = [...Order]
 
 // 初始化路由
 let router = createRouter({
@@ -77,11 +78,11 @@ router.beforeEach(async (to, from, next) => {
   // if (!globalStore.isLogin) return next({ path: '/login', replace: true })
 
   // 5. 判断是否有路由权限
-  // const menuStore = useMenuStore()
-  // if (menuStore.userRoutes.length <= 0) {
-  //   await getMenuList()
-  //   return next({ ...to, replace: true })
-  // }
+  const menuStore = useMenuStore()
+  if (menuStore.userRoutes.length <= 0) {
+    await getMenuList()
+    return next({ ...to, replace: true })
+  }
 
   // 6. 页面跳转
   next()

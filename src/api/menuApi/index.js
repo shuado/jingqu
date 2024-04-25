@@ -3,7 +3,8 @@
  * @Date: 2022-06-30 16:32:00
  * @FilePath: /quzhou-carbon/src/api/menuApi/index.js
  */
-import router from '@/router'
+import router, { allRoutes } from '@/router'
+
 import { cloneDeep } from 'lodash-es'
 import { routerMatch } from '@/utils/routeMatching'
 
@@ -19,4 +20,17 @@ export function getMenuList() {
   let menuStore = useMenuStore()
 
   const globalStore = GlobalStore()
+  // 深拷贝路由
+  let newAllRouter = cloneDeep(allRoutes)
+  console.log(newAllRouter)
+
+  routerMatch(newAllRouter, '', globalStore.user).then(routes => {
+    menuStore.setUserMenuRoutes(routes)
+    console.log(menuStore)
+    router.options.routes = Array.from(new Set([...router.options.routes, ...routes]))
+    routes.forEach(item => {
+    // console.log(item)
+      router.addRoute(item)
+    })
+  })
 }

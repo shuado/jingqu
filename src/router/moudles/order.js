@@ -12,19 +12,21 @@ export default [
     name: 'Order',
     meta: {
       icon: '',
-      authority: 1,
-      title: '系统设置'
+      // show: true,
+      // authority: 1,
+      title: '订单管理'
     },
     children: [
       {
-        path: 'bigSetting',
-        name: 'BigSetting',
+        path: 'list',
+        name: 'OrderList',
         meta: {
-          title: '大屏配置',
-          authority: 1,
+          title: '订单列表',
+          // authority: 1,
           icon: 'JT-qiyetianbaoshiduanpeizhi-weixuanze',
           show: true // 是否在侧栏中显示
-        }
+        },
+        component: () => import('@/views/order/list/index.vue')
       }
     ]
   }
