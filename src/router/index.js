@@ -74,7 +74,7 @@ router.beforeEach(async (to, from, next) => {
   if (to.meta && to.meta.authority && !globalStore.isLogin) return next({ path: '/login', replace: true })
 
   // 4. 判断是否是登陆状态
-  if (!globalStore.isLogin) return next({ path: '/login', replace: true })
+  // if (!globalStore.isLogin) return next({ path: '/login', replace: true })
 
   // 5. 判断是否有路由权限
   // const menuStore = useMenuStore()
