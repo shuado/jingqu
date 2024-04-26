@@ -29,6 +29,7 @@ const option = {
     index: true,
     searchShow: true,
     stripe: true,
+    gridBtn: true,
     searchMenuSpan: 12,
     searchLabelWidth: 100,
     refreshBtn: true,
@@ -50,33 +51,44 @@ const option = {
             label: '订单号',
             prop: 'id1',
             search: true,
+            width: 200,
+            type: 'number',
         },
         {
             label: '取票号',
+            width: 200,
+            type: 'number',
             prop: 'id2',
         },
         {
             label: '姓名',
+            width: 200,
             prop: 'id3',
         },
         {
             label: '手机',
+            width: 200,
+            type: 'number',
             prop: 'id4',
         },
         {
             label: '单价',
+            type: 'number',
             prop: 'id5',
         },
         {
             label: '总数',
+            type: 'number',
             prop: 'id6',
         },
         {
             label: '退票数',
+            type: 'number',
             prop: 'id7',
         },
         {
             label: '核销数',
+            type: 'number',
             prop: 'id8',
         },
         {
@@ -85,23 +97,30 @@ const option = {
         },
         {
             label: '产品',
+            width: 200,
             prop: 'id10',
         },
         {
             label: '总金额',
+            type: 'number',
             prop: 'id11',
         },
         {
             label: '实收金额',
+            type: 'number',
             prop: 'id12',
         },
         {
             label: '渠道',
+            width: 200,
             prop: 'id13',
         },
         {
             label: '下单时间',
             prop: 'id14',
+            type: 'date',
+            format: 'YYYY-MM-DD HH:mm:ss',
+            valueFormat: 'YYYY-MM-DD HH:mm:ss',
         },
         {
             label: '订单状态',
@@ -113,14 +132,18 @@ const option = {
         },
         {
             label: '支付流水号',
+            width: 200,
+            type: 'number',
             prop: 'id17',
         },
         {
             label: '营销活动',
+            width: 200,
             prop: 'id18',
         },
         {
             label: '活动名称',
+            width: 200,
             prop: 'id19',
         },
         {

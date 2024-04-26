@@ -24,7 +24,6 @@ export default function () {
         () => ({ currentPage: pagingOption.currentPage, pageSize: pagingOption.pageSize }),
         (newVal) => {
             pagingOption.current = newVal.currentPage;
-            pagingOption.size = newVal.pageSize;
             pagingOption.change();
         },
     );

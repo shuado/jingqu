@@ -20,6 +20,7 @@ import ArcoVueIcon from '@arco-design/web-vue/es/icon';
 import 'normalize.css'; // 全局样式格式化
 import pinia from '@/stores';
 import router from '@/router';
+import './hooks/index.js';
 import '@/utils/rem';
 import DataVVue3 from '@kjgl77/datav-vue3';
 import VueDOMPurifyHTML from 'vue-dompurify-html';

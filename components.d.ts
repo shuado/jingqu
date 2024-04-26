@@ -10,6 +10,7 @@ declare module 'vue' {
     Dialog: typeof import('./src/components/global/Dialog.vue')['default']
     ElCard: typeof import('element-plus/es')['ElCard']
     ElScrollbar: typeof import('element-plus/es')['ElScrollbar']
+    ElTag: typeof import('element-plus/es')['ElTag']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
   }

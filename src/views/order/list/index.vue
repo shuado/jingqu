@@ -5,7 +5,7 @@
 -->
 <template>
     <basic-container>
-        <avue-crud ref="crudRef" v-model="form" :option="option" @row-save="rowSave" @row-update="rowUpdate" @row-del="rowDel" :data="data"> </avue-crud>
+        <avue-crud ref="crudRef" v-model:page="pageOption" @size-change="sizeChange" v-model="form" :option="option" :data="data"> </avue-crud>
     </basic-container>
 </template>
 <script setup>
@@ -14,7 +14,21 @@ import useOption from './hooks/useOption';
 const option = useOption();
 const data = ref(null);
 const form = ref({});
+const pageOption = usePagingOption();
 
+/**
+ * @description: 页数
+ * @param {*} pageSize
+ * @return {*}
+ */
+const sizeChange = (pageSize) => {
+    pageOption.pageSize = pageSize;
+    // onLoad(search.value);
+};
+// const page = ref({
+//     total: 1,
+// });
+console.log(pageOption);
 data.value = [
     {
         id: '张三',
