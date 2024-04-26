@@ -47,7 +47,16 @@ export default defineConfig({
             ext: '.gz', //文件类型
         }),
         AutoImport({
-            imports: ['vue', 'vue-router', 'pinia'],
+            imports: [
+                'vue',
+                'vue-router',
+                'pinia',
+                {
+                    /* 自定义模块 */
+                    // ['@/hooks']: [['default', 'hooks']],
+                    ['@/hooks']: ['usePagingOption'],
+                },
+            ],
             resolvers: [ElementPlusResolver()],
             dts: true,
             eslintrc: {

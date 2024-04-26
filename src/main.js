@@ -24,6 +24,7 @@ import '@/utils/rem';
 import DataVVue3 from '@kjgl77/datav-vue3';
 import VueDOMPurifyHTML from 'vue-dompurify-html';
 import BaiduMap from 'vue-baidu-map-3x';
+import NfDesignBase from '@saber/nf-design-base-elp';
 import basicContainer from '@/components/basic-container/main.vue';
 import Avue from '@yolion/avue';
 import '@yolion/avue/lib/index.css';
@@ -60,6 +61,7 @@ app.use(DataVVue3);
 app.use(ArcoVue);
 app.use(ArcoVueIcon);
 app.use(VueDOMPurifyHTML);
+app.use(NfDesignBase);
 app.use(pinia);
 app.use(router);
 app.use(BaiduMap, {
