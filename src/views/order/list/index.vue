@@ -4,31 +4,22 @@
  * @Description:
 -->
 <template>
-    <basic-container> <avue-crud ref="crudRef" v-model="form" :option="option" @row-save="rowSave" @row-update="rowUpdate" @row-del="rowDel" :data="data"></avue-crud> </basic-container>
+    <basic-container>
+        <avue-crud ref="crudRef" v-model="form" :option="option" @row-save="rowSave" @row-update="rowUpdate" @row-del="rowDel" :data="data"> </avue-crud>
+    </basic-container>
 </template>
 <script setup>
+import useOption from './hooks/useOption';
 //获取this
-const option = ref(null);
+const option = useOption();
 const data = ref(null);
 const form = ref({});
-option.value = {
-    index: true,
-    column: [
-        {
-            label: '姓名',
-            prop: 'name',
-        },
-        {
-            label: '年龄',
-            prop: 'sex',
-        },
-    ],
-};
+
 data.value = [
-    // {
-    //     name: '张三',
-    //     sex: 12,
-    // },
+    {
+        id: '张三',
+        id1: 12,
+    },
     // {
     //     name: '李四',
     //     sex: 13,
