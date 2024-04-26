@@ -1,0 +1,22 @@
+{
+    "compilerOptions": {
+        "target": "esnext",
+        "module": "esnext",
+        "noImplicitAny": false,
+        "moduleResolution": "bundler",
+        "skipLibCheck": true, // 跳过对声明文件的检查
+        "jsx": "preserve",
+        "esModuleInterop": true,
+        "types": ["vite/client", "vue"],
+        "noEmit": true, // 不输出任何文件
+        "outDir": "./dist_ts",
+        "baseUrl": "./",
+        // "checkJs": false,
+        "allowJs": true,
+        "paths": {
+            "@/*": ["src/*"]
+        }
+    },
+    "include": ["**/*.d.ts", "**/*.ts", "**/*.tsx", "src/**/*.vue"],
+    "exclude": ["node_modules", "dist", "mock"]
+}

@@ -4,7 +4,7 @@
  * @Description:
 -->
 <template>
-  <div>123</div>
+    <basic-container> 123 </basic-container>
 </template>
 <script setup></script>
 <style lang="scss" scoped></style>
