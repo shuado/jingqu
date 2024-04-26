@@ -20,7 +20,7 @@ export default defineConfig({
         host: '0.0.0.0',
         proxy: {
             '/dev': {
-                target: 'http://121.41.177.182:8890/qq-oms', //你要跨域访问的网址
+                target: 'http://121.41.177.182:8890/', //你要跨域访问的网址
                 // target: 'http://47.97.192.55:8090/', //你要跨域访问的网址
                 // target: 'http://10.10.10.34:8090/', //你要跨域访问的网址
                 changeOrigin: true, // 允许跨域
