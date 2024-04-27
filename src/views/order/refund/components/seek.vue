@@ -26,10 +26,26 @@
             </el-input>
         </el-col>
     </el-row>
+    <el-row :gutter="20">
+        <div class="seek-text">
+            <div class="text-expand" @click="isExpand = !isExpand">
+                <el-icon :class="isExpand ? 'icon-expand' : 'icon-expand_no'"><ArrowDown /></el-icon>
+                <span> 高级查询 </span>
+            </div>
+        </div>
+    </el-row>
+    <el-row v-show="isExpand" :gutter="20">
+        <div class="seek-slot">
+            <slot />
+        </div>
+    </el-row>
 </template>
 <script setup>
 import { Search } from '@element-plus/icons-vue';
 import { dayjs } from 'element-plus';
+
+// 是否展开
+const isExpand = ref(false);
 
 const seekData = ref({
     value1: '',
@@ -87,3 +103,40 @@ const handleCheckChange = () => {
     emit('seekClick', seekData.value);
 };
 </script>
+
+<style scoped lang="scss">
+.seek-text {
+    width: 100%;
+    padding: 8px 24px;
+    .text-expand {
+        float: right;
+        display: flex;
+        align-items: center;
+        color: var(--el-color-primary);
+        .icon-expand_no {
+            cursor: pointer;
+            margin-right: 4px;
+            transition: all 0.3s;
+        }
+        .icon-expand {
+            transition: all 0.3s;
+            cursor: pointer;
+            margin-right: 4px;
+            transform: rotateX(180deg);
+        }
+        span {
+            cursor: pointer;
+        }
+    }
+}
+.seek-slot {
+    width: 100%;
+    height: fit-content;
+    padding: 12px;
+    box-sizing: border-box;
+    border: 1px solid rgba(137, 137, 137, 0.5);
+    border-radius: 8px;
+    background-color: rgb(249, 249, 249);
+    margin-bottom: 16px;
+}
+</style>

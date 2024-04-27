@@ -5,7 +5,7 @@
 -->
 <template>
     <basic-container>
-        <seek @seek-click="search" />
+        <seek @seek-click="search">123</seek>
         <avue-crud ref="crudRef" v-model:page="pageOption" v-model="form" :option="option" :data="data" @size-change="sizeChange"> </avue-crud>
     </basic-container>
 </template>
