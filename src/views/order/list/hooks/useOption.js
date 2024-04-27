@@ -27,7 +27,7 @@ const validateAvueUeditor = (rule, value, callback) => {
 };
 const option = {
     index: true,
-    searchShow: true,
+    searchShow: false,
     stripe: true,
     gridBtn: true,
     searchMenuSpan: 12,

@@ -5,16 +5,28 @@
 -->
 <template>
     <basic-container>
-        <avue-crud ref="crudRef" v-model:page="pageOption" @size-change="sizeChange" v-model="form" :option="option" :data="data"> </avue-crud>
+        <seek @seek-click="search" />
+        <avue-crud ref="crudRef" v-model:page="pageOption" v-model="form" :option="option" :data="data" @size-change="sizeChange"> </avue-crud>
     </basic-container>
 </template>
 <script setup>
+import seek from './components/seek.vue';
 import useOption from './hooks/useOption';
 //获取this
 const option = useOption();
 const data = ref(null);
 const form = ref({});
 const pageOption = usePagingOption();
+
+/**
+ * @Description: 搜索
+ * @param {*} val
+ * @author: 舒
+ * @return {*}
+ */
+const search = (val) => {
+    console.log(val);
+};
 
 /**
  * @description: 页数

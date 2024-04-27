@@ -5,7 +5,7 @@
 -->
 <template>
     <basic-container>
-        <seek />
+        <seek @seek-click="search" />
         <avue-crud ref="crudRef" v-model:page="pageOption" v-model="form" :option="option" :data="data" @size-change="sizeChange"> </avue-crud>
     </basic-container>
 </template>
@@ -17,6 +17,16 @@ const option = useOption();
 const data = ref(null);
 const form = ref({});
 const pageOption = usePagingOption();
+
+/**
+ * @Description: 搜索
+ * @param {*} val
+ * @author: 舒
+ * @return {*}
+ */
+const search = (val) => {
+    console.log(val);
+};
 
 /**
  * @description: 页数
