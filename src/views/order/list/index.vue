@@ -5,10 +5,12 @@
 -->
 <template>
     <basic-container>
-        <avue-crud ref="crudRef" v-model:page="pageOption" @size-change="sizeChange" v-model="form" :option="option" :data="data"> </avue-crud>
+        <seek />
+        <avue-crud ref="crudRef" v-model:page="pageOption" v-model="form" :option="option" :data="data" @size-change="sizeChange"> </avue-crud>
     </basic-container>
 </template>
 <script setup>
+import seek from './components/seek.vue';
 import useOption from './hooks/useOption';
 //获取this
 const option = useOption();

@@ -48,7 +48,6 @@ const option = {
         {
             label: '订单号',
             prop: 'id1',
-            search: true,
             width: 200,
             type: 'number',
         },
