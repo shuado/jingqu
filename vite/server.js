@@ -8,18 +8,19 @@ export default () => {
     return {
         port: 9889,
         proxy: {
-            '/api': {
-                // target: 'http://192.168.13.170:8060/mngApi', //运杰
-                // target: 'http://192.168.1.108:10092/mngApi', // 阿飞
-                // target: 'http://192.168.13.183:8060/mngApi', // 子豪
-                // target: 'http://192.168.1.114:10092/mngApi', // 展鹏
-                //target: 'http://192.168.50.13:10092/mngApi', // 本地
-                // target: 'http://192.168.1.110:10092/mngApi', // 陈超
-                // target: 'http://192.168.50.13:10092/mngApi', // 忠旭
-                target: 'https://gtpark-test-api.zjyolion.com/mngApi', // 线上测试
-                // target: 'https://park-demo-api.zjyolion.com/mngApi', // demo演示
-                changeOrigin: true,
-                rewrite: (path) => path.replace(/^\/api/, ''),
+            '/dev': {
+                target: 'http://121.41.177.182:8890/', //你要跨域访问的网址
+                // target: 'http://47.97.192.55:8090/', //你要跨域访问的网址
+                // target: 'http://10.10.10.34:8090/', //你要跨域访问的网址
+                changeOrigin: true, // 允许跨域
+                rewrite: (path) => path.replace(/^\/dev/, ''), // 重写路径把路径变成空字符
+            },
+            '/jwjt-acc-path': {
+                target: 'https://quzhou.co2bigdata.com/jwjt-acc-path', //你要跨域访问的网址
+                // target: 'http://47.97.192.55:8090/', //你要跨域访问的网址
+                // target: 'http://10.10.10.230:8090/', //你要跨域访问的网址
+                changeOrigin: true, // 允许跨域
+                rewrite: (path) => path.replace(/^\/jwjt-acc-path/, ''), // 重写路径把路径变成空字符
             },
         },
     };

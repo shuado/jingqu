@@ -49,7 +49,7 @@ const toLogin = async () => {
         // // 设置用户信息
         globalStore.setUser(res.data.systemCode);
         // 跳转大屏
-        globalStore.user === 'PERSONNEL' ? router.push('/system') : router.push('/reduce');
+        globalStore.user === 'PERSONNEL' ? router.push('/order/list') : router.push('/order/list');
     } catch (err) {
         Message.error('免密登录失败');
         router.push('/login');
