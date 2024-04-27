@@ -5,7 +5,9 @@
 -->
 <template>
     <basic-container>
-        <el-button :icon="Upload" style="margin-left: 12px" type="success" @click="importClick">导入</el-button>
+        <el-upload ref="upload" :limit="1" :disabled="uploadLoading" :show-file-list="false" :on-exceed="handleExceed" :auto-upload="true" :http-request="httpRequest">
+            <el-button :icon="Upload" :loading="uploadLoading" style="margin-left: 12px" type="success" @click="importClick">导入</el-button>
+        </el-upload>
         <advanced-search @search-click="searchClick" />
 
         <avue-crud ref="crudRef" v-model:page="pageOption" v-model="form" :option="option" :data="data" @size-change="sizeChange"> </avue-crud>
@@ -13,9 +15,36 @@
 </template>
 <script setup>
 import { Upload } from '@element-plus/icons-vue';
+import { ElMessage } from 'element-plus';
+import { uploadList } from '@/api/order/definite.js';
 
 import useOption from './hooks/useOption';
 const AdvancedSearch = defineAsyncComponent(() => import('./components/advanced-search.vue'));
+
+const handleExceed = (files, uploadFiles) => {
+    ElMessage.warning(`最大可上传 ${files.length} 个文件`);
+};
+
+let uploadLoading = ref(false);
+const httpRequest = (config) => {
+    const { file } = config;
+    console.log(file);
+
+    // 创建formData
+    const formData = new FormData();
+    formData.append('fileName', file);
+    uploadLoading.value = true;
+    uploadList(formData)
+        .then((res) => {
+            ElMessage.success('上传成功');
+        })
+        .catch((err) => {
+            ElMessage.error('上传失败');
+        })
+        .finally((_) => {
+            uploadLoading.value = false;
+        });
+};
 
 /**
  * @Description: 搜索
