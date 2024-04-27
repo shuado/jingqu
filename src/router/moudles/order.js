@@ -10,6 +10,7 @@ export default [
         path: '/order',
         component: index,
         name: 'Order',
+        redirect: '/order/count',
         meta: {
             icon: '',
             // show: true,
@@ -17,6 +18,17 @@ export default [
             title: '订单管理',
         },
         children: [
+            {
+                path: 'count',
+                name: 'OrderCount',
+                meta: {
+                    title: '数据汇总',
+                    // authority: 1,
+                    icon: 'DocumentCopy',
+                    show: true, // 是否在侧栏中显示
+                },
+                component: () => import('@/views/order/count/index.vue'),
+            },
             {
                 path: 'list',
                 name: 'OrderList',

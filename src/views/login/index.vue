@@ -102,7 +102,7 @@ const toLogin = () => {
             // // 设置用户信息
             globalStore.setUser(res.data.systemCode);
             // 跳转大屏
-            globalStore.user === 'PERSONNEL' ? router.push('/system') : router.push('/order/list');
+            globalStore.user === 'PERSONNEL' ? router.push('/system') : router.push('/order');
         } finally {
             getVerCode();
             loading.value = false;
