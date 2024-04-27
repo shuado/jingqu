@@ -24,7 +24,7 @@ export default [
                 meta: {
                     title: '数据汇总',
                     // authority: 1,
-                    icon: 'DocumentCopy',
+                    icon: 'ScaleToOriginal',
                     show: true, // 是否在侧栏中显示
                 },
                 component: () => import('@/views/order/count/index.vue'),

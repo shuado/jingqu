@@ -32,48 +32,52 @@ $device-phone: 500px;
 
 /*  超出文本省略号（元素不得是flex） */
 @mixin ellipsis($ellipsis-line: 1) {
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: $ellipsis-line;
-  overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: $ellipsis-line;
+    overflow: hidden;
 }
 
 /*  超出文本一行显示 */
 @mixin omit {
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 @mixin flex($flex-flow: row, $justify-content: center, $align-items: center) {
-  display: flex;
-  flex-flow: $flex-flow;
-  justify-content: $justify-content;
-  align-items: $align-items;
+    display: flex;
+    flex-flow: $flex-flow;
+    justify-content: $justify-content;
+    align-items: $align-items;
 }
 
 @mixin padding($x: 0, $y: 0) {
-  padding: $y $x;
-  box-sizing: border-box;
+    padding: $y $x;
+    box-sizing: border-box;
 }
 
 @mixin bg-image($url) {
-  // background-image: url($url);
-  background-repeat: no-repeat;
-  background-size: 100% 100%;
+    // background-image: url($url);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
 }
 @mixin button() {
-  cursor: pointer;
-  position: relative;
-  &:hover {
-    &::before {
-      content: "";
-      position: absolute;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      top: 0;
-      background: rgba(255, 255, 255, 0.1);
+    cursor: pointer;
+    position: relative;
+    &:hover {
+        &::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            top: 0;
+            background: rgba(255, 255, 255, 0.1);
+        }
     }
-  }
+}
+
+.arco-menu-light .arco-menu-item.arco-menu-selected .arco-menu-icon {
+    color: #fff !important;
 }
