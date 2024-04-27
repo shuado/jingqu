@@ -23,7 +23,6 @@
         "avue-plugin-ueditor": "^1.0.3",
         "axios": "^1.6.8",
         "crypto-js": "^4.2.0",
-        "dayjs": "^1.11.10",
         "docx-preview": "^0.3.0",
         "echarts": "^5.5.0",
         "element-plus": "^2.6.3",
