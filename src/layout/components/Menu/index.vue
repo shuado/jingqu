@@ -25,7 +25,7 @@
 </template>
 
 <script>
-import SubMenu from '@/layout/components/SubMenu/SubMenu';
+import SubMenu from '@/layout/components/SubMenu/SubMenu.vue';
 import RenderIcon from '@/utils/renderIcon';
 import { menuLeftOpenWidth, menuLeftShrinkWidth } from '@/config/menu';
 import { useMenuStore } from '@/stores/modules/menu';

@@ -1,25 +1,76 @@
-# Logs
-logs
-*.log
+.DS_Store
+node_modules
+/dist
+components.d.ts
+visualizer.html
+vite-profile-0.*
+/mock
+.eslintrc-auto-import.*
+.eslintrc-auto-import.json
+
+auto-imports.d.ts
+components.d.ts
+
+/tests/e2e/videos/
+/tests/e2e/screenshots/
+
+# local env files
+.env.local
+.env.*.local
+
+# Node.js
+node_modules/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-pnpm-debug.log*
-lerna-debug.log*
 
-node_modules
-alias.config.js
-dist
-dist-ssr
-*.local
-pnpm-lock.yaml
-# Editor directories and files
-.vscode/*
-!.vscode/extensions.json
+# Dependency directories
+.pnp/
+.pnp.js
+
+# Log files
+logs
+*.log
+
+
+
+# editor directories and files
 .idea
-.DS_Store
 *.suo
 *.ntvs*
 *.njsproj
 *.sln
-*.sw?
+*.sw*
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Vue.js
+/dist/
+/mock/
+
+# Vue CLI
+/node_modules/
+/.cache/
+
+# Vue CLI
+/node_modules/
+/.cache/
+
+# Yarn
+/yarn-error.log
+/yarn.lock
+yarn.lock
+
+
+# pnpm
+/pnpm-lock.yaml
+
+# TypeScript
+*.tsbuildinfo
+
+# Nuxt.js
+.nuxt/
+!nuxt.config.js

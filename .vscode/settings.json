@@ -1,0 +1,37 @@
+{
+    "vue.codeActions.enabled": true,
+    "i18n-ally.localesPaths": [
+      "src/lang"
+    ],
+    "js/ts.implicitProjectConfig.checkJs": false,
+    "javascript.autoClosingTags": true,
+    "javascript.format.enable": true,
+    "javascript.format.insertSpaceAfterCommaDelimiter": false,
+    "javascript.format.insertSpaceAfterFunctionKeywordForAnonymousFunctions": false,
+    "editor.formatOnSave": true,
+    "prettier.endOfLine": "lf",
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "[vue]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": "explicit"
+    },
+    "eslint.validate": [
+      "javascript",
+      "javascriptreact",
+      "vue",
+      "html"
+    ],
+    "files.eol": "\n",
+    "javascript.suggest.names": true,
+    "[scss]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "cSpell.words": [
+      "geocoder",
+      "regeocode"
+    ],
+    "prettier.printWidth": 256,
+    "scssFormatter.printWidth": 256
+  }

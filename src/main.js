@@ -17,14 +17,11 @@ import 'element-plus/theme-chalk/dark/css-vars.css';
 
 // 额外引入图标库
 import ArcoVueIcon from '@arco-design/web-vue/es/icon';
-import 'normalize.css'; // 全局样式格式化
+// import 'normalize.css'; // 全局样式格式化
 import pinia from '@/stores';
 import router from '@/router';
 import './hooks/index.js';
 import '@/utils/rem';
-import DataVVue3 from '@kjgl77/datav-vue3';
-import VueDOMPurifyHTML from 'vue-dompurify-html';
-import BaiduMap from 'vue-baidu-map-3x';
 import NfDesignBase from '@saber/nf-design-base-elp';
 import basicContainer from '@/components/basic-container/main.vue';
 import Avue from '@yolion/avue';
@@ -58,14 +55,9 @@ app.use(ElementPlus, {
 
 app.use(avueUeditor, { axios: request.axios });
 
-app.use(DataVVue3);
 app.use(ArcoVue);
 app.use(ArcoVueIcon);
-app.use(VueDOMPurifyHTML);
 app.use(NfDesignBase);
 app.use(pinia);
 app.use(router);
-app.use(BaiduMap, {
-    ak: 'OSgwWgE9Ha4RfTyyNU7UPpBv',
-});
 app.mount('#app');
