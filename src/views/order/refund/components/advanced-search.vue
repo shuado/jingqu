@@ -31,12 +31,13 @@
             </el-form-item>
         </el-form>
         <div style="width: 100%; text-align: right">
-            <el-button type="primary" @click="onSubmit">查询</el-button>
-            <el-button @click="onReset">清空</el-button>
+            <el-button type="primary" :icon="Search" @click="onSubmit">查询</el-button>
+            <el-button :icon="Refresh" @click="onReset">清空</el-button>
         </div>
     </div>
 </template>
 <script setup>
+import { Search, Refresh } from '@element-plus/icons-vue';
 import { reactive } from 'vue';
 
 // 数据

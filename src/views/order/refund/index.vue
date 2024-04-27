@@ -5,6 +5,8 @@
 -->
 <template>
     <basic-container>
+        <el-button :icon="Upload" style="margin-bottom: 12px" type="success" @click="importClick">导入</el-button>
+
         <seek @seek-click="search">
             <advanced-search @search-click="searchClick" />
         </seek>
@@ -12,6 +14,8 @@
     </basic-container>
 </template>
 <script setup>
+import { Upload } from '@element-plus/icons-vue';
+
 const seek = defineAsyncComponent(() => import('./components/seek.vue'));
 const AdvancedSearch = defineAsyncComponent(() => import('./components/advanced-search.vue'));
 import useOption from './hooks/useOption';
@@ -35,6 +39,14 @@ const searchClick = (val) => {
     console.log(val);
 };
 
+/**
+ * @Description: 导入
+ * @author: 舒
+ * @return {*}
+ */
+const importClick = () => {
+    console.log('导入');
+};
 /**
  * @description: 页数
  * @param {*} pageSize

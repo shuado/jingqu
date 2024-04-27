@@ -5,11 +5,15 @@
 -->
 <template>
     <basic-container>
+        <el-button :icon="Upload" style="margin-left: 12px" type="success" @click="importClick">导入</el-button>
         <advanced-search @search-click="searchClick" />
+
         <avue-crud ref="crudRef" v-model:page="pageOption" v-model="form" :option="option" :data="data" @size-change="sizeChange"> </avue-crud>
     </basic-container>
 </template>
 <script setup>
+import { Upload } from '@element-plus/icons-vue';
+
 import useOption from './hooks/useOption';
 const AdvancedSearch = defineAsyncComponent(() => import('./components/advanced-search.vue'));
 
@@ -21,6 +25,16 @@ const AdvancedSearch = defineAsyncComponent(() => import('./components/advanced-
 const searchClick = (val) => {
     console.log(val);
 };
+
+/**
+ * @Description: 导入
+ * @author: 舒
+ * @return {*}
+ */
+const importClick = () => {
+    console.log('导入');
+};
+
 //获取this
 const option = useOption();
 const data = ref(null);
