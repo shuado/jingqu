@@ -19,10 +19,10 @@
                 <el-input v-model="formInline.value32" style="width: 240px" placeholder="请输入订单号" clearable />
             </el-form-item>
             <el-form-item label="票号" prop="value3">
-                <el-input v-model="formInline.value3" style="width: 240px" placeholder="请输入取票号" clearable />
+                <el-input v-model="formInline.value3" style="width: 240px" placeholder="请输入票号" clearable />
             </el-form-item>
             <el-form-item label="退款号" prop="value4">
-                <el-input v-model="formInline.value4" style="width: 240px" placeholder="请输入支付流水号" clearable />
+                <el-input v-model="formInline.value4" style="width: 240px" placeholder="请输入退款号" clearable />
             </el-form-item>
             <el-form-item label="渠道" prop="value5">
                 <el-select v-model="formInline.value5" placeholder="请选择渠道" style="width: 140px" clearable>
@@ -71,6 +71,7 @@ const onReset = () => {
 </script>
 <style lang="scss" scope>
 .advanced-search {
+    margin: 12px;
     width: 100%;
     height: fit-content;
     padding: 12px;

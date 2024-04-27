@@ -70,8 +70,6 @@
                     <el-option v-for="item in value16Options" :key="item.value" :label="item.label" :value="item.value" />
                 </el-select>
             </el-form-item>
-
-            <el-form-item> </el-form-item>
         </el-form>
         <div style="width: 100%; text-align: right">
             <el-button type="primary" @click="onSubmit">查询</el-button>
@@ -200,12 +198,12 @@ const onReset = () => {
 <style lang="scss" scope>
 .advanced-search {
     width: 100%;
+    margin: 12px;
     height: fit-content;
     padding: 12px;
     box-sizing: border-box;
     border: 1px solid rgba(137, 137, 137, 0.5);
     border-radius: 8px;
     background-color: rgb(249, 249, 249);
-    margin-bottom: 16px;
 }
 </style>

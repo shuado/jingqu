@@ -27,7 +27,7 @@ const validateAvueUeditor = (rule, value, callback) => {
 };
 const option = {
     index: true,
-    searchShow: true,
+    searchShow: false,
     stripe: true,
     gridBtn: true,
     searchMenuSpan: 12,
@@ -48,7 +48,6 @@ const option = {
         {
             label: '订单号',
             prop: 'id1',
-            search: true,
             width: 200,
             type: 'number',
         },

@@ -5,11 +5,22 @@
 -->
 <template>
     <basic-container>
-        <avue-crud ref="crudRef" v-model:page="pageOption" @size-change="sizeChange" v-model="form" :option="option" :data="data"> </avue-crud>
+        <advanced-search @search-click="searchClick" />
+        <avue-crud ref="crudRef" v-model:page="pageOption" v-model="form" :option="option" :data="data" @size-change="sizeChange"> </avue-crud>
     </basic-container>
 </template>
 <script setup>
 import useOption from './hooks/useOption';
+const AdvancedSearch = defineAsyncComponent(() => import('./components/advanced-search.vue'));
+
+/**
+ * @Description: 搜索
+ * @author: 舒
+ * @return {*}
+ */
+const searchClick = (val) => {
+    console.log(val);
+};
 //获取this
 const option = useOption();
 const data = ref(null);
