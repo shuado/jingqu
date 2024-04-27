@@ -53,66 +53,91 @@ const option = {
             type: 'number',
         },
         {
-            label: '取票号',
+            label: '票号',
             width: 200,
             type: 'number',
             prop: 'id2',
         },
-        {
-            label: '姓名',
-            width: 200,
-            prop: 'id3',
-        },
-        {
-            label: '手机',
-            width: 200,
-            type: 'number',
-            prop: 'id4',
-        },
-        {
-            label: '单价',
-            type: 'number',
-            prop: 'id5',
-        },
-        {
-            label: '总数',
-            type: 'number',
-            prop: 'id6',
-        },
-        {
-            label: '退票数',
-            type: 'number',
-            prop: 'id7',
-        },
-        {
-            label: '核销数',
-            type: 'number',
-            prop: 'id8',
-        },
-        {
-            label: '收款方式',
-            prop: 'id9',
-        },
+
         {
             label: '产品',
             width: 200,
             prop: 'id10',
         },
+
         {
-            label: '总金额',
-            type: 'number',
-            prop: 'id11',
+            label: '购票人',
+            width: 100,
+            prop: 'id3',
         },
         {
-            label: '实收金额',
+            label: '购票人手机号',
+            width: 200,
             type: 'number',
-            prop: 'id12',
+            prop: 'id4',
         },
+        {
+            label: '购票人身份证',
+            width: 200,
+            type: 'number',
+            prop: 'id41',
+        },
+
+        {
+            label: '游客姓名',
+            width: 100,
+            prop: 'id31',
+        },
+
+        {
+            label: '游客身份证',
+            width: 200,
+            type: 'number',
+            prop: 'id42',
+        },
+        {
+            label: '游客手机',
+            width: 200,
+            type: 'number',
+            prop: 'id4',
+        },
+
         {
             label: '渠道',
             width: 200,
             prop: 'id13',
         },
+
+        {
+            label: '收款方式',
+            prop: 'id9',
+        },
+
+        {
+            label: '票价',
+            type: 'number',
+            prop: 'id5',
+        },
+        {
+            label: '折后价',
+            type: 'number',
+            prop: 'id51',
+        },
+        {
+            label: '结算价',
+            type: 'number',
+            prop: 'id52',
+        },
+
+        {
+            label: '订单状态',
+            prop: 'id15',
+        },
+        {
+            label: '门票状态',
+            prop: 'id15',
+        },
+
         {
             label: '下单时间',
             prop: 'id14',
@@ -120,36 +145,73 @@ const option = {
             format: 'YYYY-MM-DD HH:mm:ss',
             valueFormat: 'YYYY-MM-DD HH:mm:ss',
         },
+
         {
-            label: '订单状态',
-            prop: 'id15',
+            label: '游玩时间',
+            prop: 'id141',
+            type: 'date',
+            format: 'YYYY-MM-DD HH:mm:ss',
+            valueFormat: 'YYYY-MM-DD HH:mm:ss',
         },
+        {
+            label: '预约时间',
+            prop: 'id142',
+            type: 'date',
+            format: 'YYYY-MM-DD HH:mm:ss',
+            valueFormat: 'YYYY-MM-DD HH:mm:ss',
+        },
+        {
+            label: '最近核销时间',
+            prop: 'id143',
+            type: 'date',
+            format: 'YYYY-MM-DD HH:mm:ss',
+            valueFormat: 'YYYY-MM-DD HH:mm:ss',
+        },
+        {
+            label: '退款时间',
+            prop: 'id144',
+            type: 'date',
+            format: 'YYYY-MM-DD HH:mm:ss',
+            valueFormat: 'YYYY-MM-DD HH:mm:ss',
+        },
+
         {
             label: '分销商',
             prop: 'id16',
         },
         {
-            label: '支付流水号',
+            label: '售票员',
+            prop: 'id161',
+        },
+
+        {
+            label: '打印次数',
+            type: 'number',
+            prop: 'id6',
+        },
+
+        {
+            label: '打印来源',
             width: 200,
             type: 'number',
             prop: 'id17',
         },
         {
-            label: '营销活动',
+            label: '打印时间',
             width: 200,
             prop: 'id18',
+            type: 'date',
+            format: 'YYYY-MM-DD HH:mm:ss',
+            valueFormat: 'YYYY-MM-DD HH:mm:ss',
         },
         {
-            label: '活动名称',
+            label: '卡号',
+            type: 'number',
             width: 200,
             prop: 'id19',
         },
         {
-            label: '开票状态',
-            prop: 'id20',
-        },
-        {
-            label: '备注',
+            label: '订单备注',
             prop: 'id21',
         },
     ],

@@ -23,10 +23,32 @@ export default [
                 meta: {
                     title: '订单列表',
                     // authority: 1,
-                    icon: 'JT-qiyetianbaoshiduanpeizhi-weixuanze',
+                    icon: 'Document',
                     show: true, // 是否在侧栏中显示
                 },
                 component: () => import('@/views/order/list/index.vue'),
+            },
+            {
+                path: 'refund',
+                name: 'OrderRefund',
+                meta: {
+                    title: '退单列表',
+                    // authority: 1,
+                    icon: 'Memo',
+                    show: true, // 是否在侧栏中显示
+                },
+                component: () => import('@/views/order/refund/index.vue'),
+            },
+            {
+                path: 'definite',
+                name: 'OrderDefinite',
+                meta: {
+                    title: '订单明细列表',
+                    // authority: 1,
+                    icon: 'DocumentCopy',
+                    show: true, // 是否在侧栏中显示
+                },
+                component: () => import('@/views/order/definite/index.vue'),
             },
         ],
     },

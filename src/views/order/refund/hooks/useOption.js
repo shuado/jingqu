@@ -46,111 +46,74 @@ const option = {
     overHidden: true,
     column: [
         {
-            label: '订单号',
+            label: '退款号',
             prop: 'id1',
             search: true,
             width: 200,
             type: 'number',
         },
         {
-            label: '取票号',
+            label: '订单号',
             width: 200,
             type: 'number',
             prop: 'id2',
         },
         {
-            label: '姓名',
-            width: 200,
-            prop: 'id3',
-        },
-        {
-            label: '手机',
+            label: '票号',
             width: 200,
             type: 'number',
-            prop: 'id4',
+            prop: 'id2',
         },
-        {
-            label: '单价',
-            type: 'number',
-            prop: 'id5',
-        },
-        {
-            label: '总数',
-            type: 'number',
-            prop: 'id6',
-        },
-        {
-            label: '退票数',
-            type: 'number',
-            prop: 'id7',
-        },
-        {
-            label: '核销数',
-            type: 'number',
-            prop: 'id8',
-        },
-        {
-            label: '收款方式',
-            prop: 'id9',
-        },
+
         {
             label: '产品',
             width: 200,
             prop: 'id10',
         },
-        {
-            label: '总金额',
-            type: 'number',
-            prop: 'id11',
-        },
-        {
-            label: '实收金额',
-            type: 'number',
-            prop: 'id12',
-        },
+
         {
             label: '渠道',
             width: 200,
             prop: 'id13',
         },
+
         {
-            label: '下单时间',
-            prop: 'id14',
+            label: '退票数',
+            type: 'number',
+            prop: 'id7',
+        },
+
+        {
+            label: '退款金额',
+            width: 200,
+            type: 'number',
+            prop: 'id4',
+        },
+        {
+            label: '退款费率',
+            width: 200,
+            type: 'number',
+            prop: 'id4',
+        },
+        {
+            label: '退款手续费',
+            width: 200,
+            type: 'number',
+            prop: 'id4',
+        },
+        {
+            label: '退款时间',
+            width: 200,
             type: 'date',
             format: 'YYYY-MM-DD HH:mm:ss',
             valueFormat: 'YYYY-MM-DD HH:mm:ss',
+            prop: 'id4',
         },
+
         {
-            label: '订单状态',
-            prop: 'id15',
-        },
-        {
-            label: '分销商',
-            prop: 'id16',
-        },
-        {
-            label: '支付流水号',
+            label: '退款人',
             width: 200,
-            type: 'number',
-            prop: 'id17',
-        },
-        {
-            label: '营销活动',
-            width: 200,
-            prop: 'id18',
-        },
-        {
-            label: '活动名称',
-            width: 200,
-            prop: 'id19',
-        },
-        {
-            label: '开票状态',
-            prop: 'id20',
-        },
-        {
-            label: '备注',
-            prop: 'id21',
+            prop: 'id3',
         },
     ],
 };
