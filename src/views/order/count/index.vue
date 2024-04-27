@@ -16,12 +16,12 @@
                         </el-tooltip>
                     </div>
                     <div v-if="item.middleLeft || item.middlRight" class="middle-item">
-                        <span v-if="item.middleLeft">{{ item.middleLeft }} </span>
-                        <span v-if="item.middlRight">{{ item.middlRight }}</span>
+                        <span v-if="item.middleLeft">{{ item.middleLeft == 'null' ? '-' : item.middleLeft }} </span>
+                        <span v-if="item.middlRight">{{ item.middlRight == 'null' ? '-' : item.middlRight }}</span>
                     </div>
                     <div v-if="item.bottomLeft || item.bottomRight" class="bottom-item">
-                        <span v-if="item.bottomLeft">{{ item.bottomLeft }} </span>
-                        <span v-if="item.bottomRight">{{ item.bottomRight }}</span>
+                        <span v-if="item.bottomLeft">{{ item.bottomLeft == 'null' ? '-' : item.bottomLeft }} </span>
+                        <span v-if="item.bottomRight">{{ item.bottomRight == 'null' ? '-' : item.bottomRight }}</span>
                     </div>
                 </div>
             </div>
@@ -29,118 +29,154 @@
     </basic-container>
 </template>
 <script setup>
-let tabData = ref([
-    {
-        id: 1,
-        icon: new URL('../../../assets/img/order/1.png', import.meta.url).href,
-        questionMark: '',
-        title: '支付订单数',
-        middleLeft: '',
-        middlRight: '56',
-        bottomLeft: '昨日：',
-        bottomRight: '12333',
-    },
-    {
-        id: 2,
-        icon: '',
-        questionMark: '',
-        title: '支付金额（元）',
-        middleLeft: '¥',
-        middlRight: '1068.00',
-        bottomLeft: '昨日：',
-        bottomRight: '12333',
-    },
-    {
-        id: 3,
-        icon: new URL('../../../assets/img/order/2.png', import.meta.url).href,
-        questionMark: '',
-        title: '实售票数',
-        middleLeft: '',
-        middlRight: '253',
-        bottomLeft: '昨日：',
-        bottomRight: '12333',
-    },
-    {
-        id: 4,
-        icon: '',
-        questionMark: '',
-        title: '实收金额（元）',
-        middleLeft: '',
-        middlRight: '795.00',
-        bottomLeft: '昨日：',
-        bottomRight: '12333',
-    },
-    {
-        id: 5,
-        icon: new URL('../../../assets/img/order/3.png', import.meta.url).href,
-        questionMark: '',
-        title: '核销票数',
-        middleLeft: '',
-        middlRight: '253',
-        bottomLeft: '昨日：',
-        bottomRight: '12333',
-    },
-    {
-        id: 6,
-        icon: '',
-        questionMark: '注意：核销金额是未打折的门票销售价。',
-        title: '核销金额（元）',
-        middleLeft: '',
-        middlRight: '795.00',
-        bottomLeft: '昨日：',
-        bottomRight: '12333',
-    },
-    {
-        id: 7,
-        icon: new URL('../../../assets/img/order/4.png', import.meta.url).href,
-        questionMark: '',
-        title: '退票数',
-        middleLeft: '',
-        middlRight: '253',
-        bottomLeft: '昨日：',
-        bottomRight: '12333',
-    },
-    {
-        id: 8,
-        icon: '',
-        questionMark: '',
-        title: '退票金额（元）',
-        middleLeft: '',
-        middlRight: '795.00',
-        bottomLeft: '昨日：',
-        bottomRight: '12333',
-    },
-    {
-        id: 9,
-        icon: new URL('../../../assets/img/order/5.png', import.meta.url).href,
-        questionMark: '',
-        title: '景区入园人数',
-        middleLeft: '',
-        middlRight: '253',
-        bottomLeft: '昨日:',
-        bottomRight: '12333',
-    },
-    {
-        id: 10,
-        icon: '',
-        questionMark: '',
-        title: '景区出园人数',
-        middleLeft: '',
-        middlRight: '795.00',
-        bottomLeft: '昨日：',
-        bottomRight: '12333',
-    },
-    {
-        id: 11,
-        icon: '',
-        questionMark: '景区在线人数 = 景区入园人数 - 景区出园人数',
-        title: '景区在园人数',
-        middleLeft: '',
-        middlRight: '795.00',
-        bottomLeft: '',
-        bottomRight: '',
-    },
-]);
+import { dayjs } from 'element-plus';
+
+import { getData } from '@/api/order/count.js';
+
+let data = ref({
+    enterUserNum: null,
+    inUserNum: null,
+    lastEnterUserNum: null,
+    lastOutUserNum: null,
+    lastPaymentOrderNum: 0,
+    lastPaymentPrice: 0,
+    lastReceiptsPrice: 0,
+    lastRefundAmount: 0,
+    lastRefundsNum: 0,
+    lastTicketsNum: 0,
+    lastWriteOffNum: 0,
+    lastWriteOffPrice: 0,
+    outUserNum: null,
+    paymentOrderNum: 0,
+    paymentPrice: 0,
+    receiptsPrice: 0,
+    refundAmount: 0,
+    refundsNum: 0,
+    ticketsNum: 0,
+    writeOffNum: 0,
+    writeOffPrice: 0,
+});
+getData({
+    orderTimeStart: dayjs().format('YYYY-MM-DD 00:00:00'),
+    orderTimeEnd: dayjs().format('YYYY-MM-DD 23:59:59'),
+}).then((res) => {
+    data.value = res.data;
+});
+
+let tabData = computed(() => {
+    return [
+        {
+            id: 1,
+            icon: new URL('../../../assets/img/order/1.png', import.meta.url).href,
+            questionMark: '',
+            title: '支付订单数',
+            middleLeft: '',
+            middlRight: data.value.paymentOrderNum + '',
+            bottomLeft: '昨日：',
+            bottomRight: data.value.lastPaymentOrderNum + '',
+        },
+        {
+            id: 2,
+            icon: '',
+            questionMark: '',
+            title: '支付金额（元）',
+            middleLeft: '¥',
+            middlRight: data.value.paymentPrice + '',
+            bottomLeft: '昨日：',
+            bottomRight: data.value.lastPaymentPrice + '',
+        },
+        {
+            id: 3,
+            icon: new URL('../../../assets/img/order/2.png', import.meta.url).href,
+            questionMark: '',
+            title: '实售票数',
+            middleLeft: '',
+            middlRight: data.value.ticketsNum + '',
+            bottomLeft: '昨日：',
+            bottomRight: data.value.lastTicketsNum + '',
+        },
+        {
+            id: 4,
+            icon: '',
+            questionMark: '',
+            title: '实收金额（元）',
+            middleLeft: '',
+            middlRight: data.value.receiptsPrice + '',
+            bottomLeft: '昨日：',
+            bottomRight: data.value.lastReceiptsPrice + '',
+        },
+        {
+            id: 5,
+            icon: new URL('../../../assets/img/order/3.png', import.meta.url).href,
+            questionMark: '',
+            title: '核销票数',
+            middleLeft: '',
+            middlRight: data.value.writeOffNum + '',
+            bottomLeft: '昨日：',
+            bottomRight: data.value.lastWriteOffNum + '',
+        },
+        {
+            id: 6,
+            icon: '',
+            questionMark: '注意：核销金额是未打折的门票销售价。',
+            title: '核销金额（元）',
+            middleLeft: '',
+            middlRight: data.value.writeOffPrice + '',
+            bottomLeft: '昨日：',
+            bottomRight: data.value.lastWriteOffPrice + '',
+        },
+        {
+            id: 7,
+            icon: new URL('../../../assets/img/order/4.png', import.meta.url).href,
+            questionMark: '',
+            title: '退票数',
+            middleLeft: '',
+            middlRight: data.value.refundsNum + '',
+            bottomLeft: '昨日：',
+            bottomRight: data.value.lastRefundsNum + '',
+        },
+        {
+            id: 8,
+            icon: '',
+            questionMark: '',
+            title: '退票金额（元）',
+            middleLeft: '',
+            middlRight: data.value.refundAmount + '',
+            bottomLeft: '昨日：',
+            bottomRight: data.value.lastRefundAmount + '',
+        },
+        {
+            id: 9,
+            icon: new URL('../../../assets/img/order/5.png', import.meta.url).href,
+            questionMark: '',
+            title: '景区入园人数',
+            middleLeft: '',
+            middlRight: data.value.enterUserNum + '',
+            bottomLeft: '昨日:',
+            bottomRight: data.value.lastEnterUserNum + '',
+        },
+        {
+            id: 10,
+            icon: '',
+            questionMark: '',
+            title: '景区出园人数',
+            middleLeft: '',
+            middlRight: data.value.outUserNum + '',
+            bottomLeft: '昨日：',
+            bottomRight: data.value.lastOutUserNum + '',
+        },
+        {
+            id: 11,
+            icon: '',
+            questionMark: '景区在线人数 = 景区入园人数 - 景区出园人数',
+            title: '景区在园人数',
+            middleLeft: '',
+            middlRight: data.value.inUserNum + '',
+            bottomLeft: '',
+            bottomRight: '',
+        },
+    ];
+});
 </script>
 <style lang="scss" scoped>
 .tab-data {

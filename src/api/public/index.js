@@ -3,8 +3,8 @@
  * @Date: 2022-07-11 14:36:01
  * @FilePath: /double-carbon-cloud/src/api/public/index.js
  */
-import JTRequest from '../request'
-const prefixUrl = '/shuxi-dcc-monitor'
+import JTRequest from '../request';
+const prefixUrl = '/shuxi-dcc-monitor';
 
 /**
  * 通用 行业下拉框
@@ -13,8 +13,8 @@ const prefixUrl = '/shuxi-dcc-monitor'
  * @returns {Promise<unknown>}
  */
 export function universalQueryIndustry(data) {
-  return JTRequest.post({
-    url: prefixUrl + '/universal/queryIndustry',
-    data
-  })
+    return JTRequest.post({
+        url: prefixUrl + '/universal/queryIndustry',
+        data,
+    });
 }
