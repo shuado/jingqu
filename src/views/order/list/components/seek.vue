@@ -36,9 +36,7 @@
         </div>
     </el-row>
     <el-row v-show="isExpand" :gutter="20">
-        <div class="seek-slot">
-            <slot />
-        </div>
+        <slot />
     </el-row>
 </template>
 <script setup>
@@ -130,16 +128,5 @@ const handleCheckChange = () => {
             cursor: pointer;
         }
     }
-}
-
-.seek-slot {
-    width: 100%;
-    height: fit-content;
-    padding: 12px;
-    box-sizing: border-box;
-    border: 1px solid rgba(137, 137, 137, 0.5);
-    border-radius: 8px;
-    background-color: rgb(249, 249, 249);
-    margin-bottom: 16px;
 }
 </style>
