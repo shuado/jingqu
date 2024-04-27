@@ -5,7 +5,7 @@
 -->
 <template>
     <basic-container>
-        <seek @seek-click="search"> <AdvancedSearch /></seek>
+        <seek @seek-click="search"> <advanced-search @search-click="searchClick" /></seek>
         <avue-crud ref="crudRef" v-model:page="pageOption" v-model="form" :option="option" :data="data" @size-change="sizeChange"> </avue-crud>
     </basic-container>
 </template>
@@ -26,6 +26,9 @@ const pageOption = usePagingOption();
  * @return {*}
  */
 const search = (val) => {
+    console.log(val);
+};
+const searchClick = (val) => {
     console.log(val);
 };
 
