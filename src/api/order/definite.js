@@ -26,3 +26,27 @@ export function getList(data) {
         data,
     });
 }
+
+// 获取售票员列表
+
+export function getConductors() {
+    return JTRequest.get({
+        url: prefixUrl + '/goodsOrderDetail/getConductors',
+    });
+}
+
+// 获取分销商列表
+
+export function getDistributors() {
+    return JTRequest.get({
+        url: prefixUrl + '/goodsOrderDetail/getDistributors',
+    });
+}
+
+// 获取产品列表
+
+export function getProducts() {
+    return JTRequest.get({
+        url: prefixUrl + '/goodsOrderDetail/getProducts',
+    });
+}

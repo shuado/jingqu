@@ -26,7 +26,7 @@
             </el-form-item>
             <el-form-item label="渠道" prop="channel">
                 <el-select v-model="formInline.channel" placeholder="请选择渠道" style="width: 140px" clearable>
-                    <el-option v-for="item in channelOptions" :key="item.value" :label="item.label" :value="item.value" />
+                    <el-option v-for="item in ChannelType" :key="item.dictKey" :label="item.dictValue" :value="item.dictKey" />
                 </el-select>
             </el-form-item>
         </el-form>
@@ -66,16 +66,12 @@ watch(
     },
 );
 
-const channelOptions = [
-    {
-        value: '选项1',
-        label: '黄金糕',
-    },
-    {
-        value: '选项2',
-        label: '双皮奶',
-    },
-];
+import { getDicts } from '@/api/order/index';
+const ChannelType = ref([]);
+
+getDicts().then(({ data: res }) => {
+    ChannelType.value = res.ChannelType || [];
+});
 
 const emit = defineEmits(['searchClick']);
 const onSubmit = () => {
@@ -86,7 +82,7 @@ const onSubmit = () => {
     emit('searchClick', formInline);
 };
 
-const form = ref(null);
+const form = ref({});
 const onReset = () => {
     form.value.resetFields();
     emit('searchClick', formInline);

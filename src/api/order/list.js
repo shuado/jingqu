@@ -25,3 +25,10 @@ export function getList(data) {
         data,
     });
 }
+
+// 获取产品列表
+export function getProducts() {
+    return JTRequest.get({
+        url: prefixUrl + '/goodsOrder/getProducts',
+    });
+}

@@ -20,37 +20,37 @@
             </el-form-item>
             <el-form-item label="售票员" prop="conductor">
                 <el-select v-model="formInline.conductor" placeholder="请选择售票员" style="width: 140px" clearable>
-                    <el-option v-for="item in conductorOptions" :key="item.value" :label="item.label" :value="item.value" />
+                    <el-option v-for="item in conductorOptions" :key="item.dictKey" :label="item.dictValue" :value="item.dictKey" />
                 </el-select>
             </el-form-item>
             <el-form-item label="渠道" prop="channel">
                 <el-select v-model="formInline.channel" placeholder="请选择渠道" style="width: 140px" clearable>
-                    <el-option v-for="item in channelOptions" :key="item.value" :label="item.label" :value="item.value" />
+                    <el-option v-for="item in ChannelType" :key="item.dictKey" :label="item.dictValue" :value="item.dictKey" />
                 </el-select>
             </el-form-item>
             <el-form-item label="收款方式" prop="paymentMethod">
                 <el-select v-model="formInline.paymentMethod" placeholder="请选择收款方式" style="width: 140px" clearable>
-                    <el-option v-for="item in paymentMethodOptions" :key="item.value" :label="item.label" :value="item.value" />
+                    <el-option v-for="item in PaymentMethodType" :key="item.dictKey" :label="item.dictValue" :value="item.dictKey" />
                 </el-select>
             </el-form-item>
             <el-form-item label="订单状态" prop="orderStatus">
                 <el-select v-model="formInline.orderStatus" placeholder="请选择订单状态" style="width: 140px" clearable>
-                    <el-option v-for="item in orderStatusOptions" :key="item.value" :label="item.label" :value="item.value" />
+                    <el-option v-for="item in OrderStatus" :key="item.dictKey" :label="item.dictValue" :value="item.dictKey" />
                 </el-select>
             </el-form-item>
             <el-form-item label="门票状态" prop="ticketStatus">
                 <el-select v-model="formInline.ticketStatus" placeholder="请选择门票状态" style="width: 140px" clearable>
-                    <el-option v-for="item in ticketStatusOptions" :key="item.value" :label="item.label" :value="item.value" />
+                    <el-option v-for="item in TicketStatus" :key="item.dictKey" :label="item.dictValue" :value="item.dictKey" />
                 </el-select>
             </el-form-item>
             <el-form-item label="分销商" prop="distributor">
                 <el-select v-model="formInline.distributor" placeholder="请选择分销商" style="width: 140px" clearable>
-                    <el-option v-for="item in distributorOptions" :key="item.value" :label="item.label" :value="item.value" />
+                    <el-option v-for="item in distributorOptions" :key="item.dictKey" :label="item.dictValue" :value="item.dictKey" />
                 </el-select>
             </el-form-item>
             <el-form-item label="产品" prop="product">
                 <el-select v-model="formInline.product" placeholder="请选择产品" style="width: 140px" clearable>
-                    <el-option v-for="item in productOptions" :key="item.value" :label="item.label" :value="item.value" />
+                    <el-option v-for="item in productOptions" :key="item.dictKey" :label="item.dictValue" :value="item.dictKey" />
                 </el-select>
             </el-form-item>
 
@@ -79,7 +79,10 @@
 <script setup>
 import { Search, Refresh } from '@element-plus/icons-vue';
 import { reactive } from 'vue';
+import { getProducts, getDistributors, getConductors } from '@/api/order/definite.js';
 
+const dictAll = JSON.parse(localStorage.getItem('dicts-all'));
+console.log(dictAll);
 // 数据
 const formInline = reactive({
     orderTime: '',
@@ -172,85 +175,44 @@ watch(
     },
 );
 
-const conductorOptions = [
-    {
-        value: '选项1',
-        label: '黄金糕',
-    },
-    {
-        value: '选项2',
-        label: '双皮奶',
-    },
-];
+const [ChannelType, PaymentMethodType, OrderStatus, TicketStatus, productOptions, conductorOptions, distributorOptions] = [ref([]), ref([]), ref([]), ref([]), ref([]), ref([]), ref([])];
 
-const channelOptions = [
-    {
-        value: '选项1',
-        label: '黄金糕',
-    },
-    {
-        value: '选项2',
-        label: '双皮奶',
-    },
-];
-const paymentMethodOptions = [
-    {
-        value: '选项1',
-        label: '黄金糕',
-    },
-    {
-        value: '选项2',
-        label: '双皮奶',
-    },
-];
-const orderStatusOptions = [
-    {
-        value: '选项1',
-        label: '黄金糕',
-    },
-    {
-        value: '选项2',
-        label: '双皮奶',
-    },
-];
-const ticketStatusOptions = [
-    {
-        value: '选项1',
-        label: '黄金糕',
-    },
-    {
-        value: '选项2',
-        label: '双皮奶',
-    },
-];
-const distributorOptions = [
-    {
-        value: '选项1',
-        label: '黄金糕',
-    },
-    {
-        value: '选项2',
-        label: '双皮奶',
-    },
-];
+getProducts().then(({ data: res }) => {
+    productOptions.value = res.map((item) => ({
+        dictValue: item,
+        dictKey: item,
+    }));
+});
 
-const productOptions = [
-    {
-        value: '选项1',
-        label: '黄金糕',
-    },
-    {
-        value: '选项2',
-        label: '双皮奶',
-    },
-];
+getDistributors().then(({ data: res }) => {
+    distributorOptions.value = res.map((item) => ({
+        dictValue: item,
+        dictKey: item,
+    }));
+});
+
+getConductors().then(({ data: res }) => {
+    conductorOptions.value = res.map((item) => ({
+        dictValue: item,
+        dictKey: item,
+    }));
+});
+
+import { getDicts } from '@/api/order/index';
+
+getDicts().then(({ data: res }) => {
+    ChannelType.value = res.ChannelType || [];
+    PaymentMethodType.value = res.PaymentMethodType || [];
+    OrderStatus.value = res.OrderStatus || [];
+    TicketStatus.value = res.OrderStatus || [];
+});
 
 const emit = defineEmits(['searchClick']);
 const onSubmit = () => {
     emit('searchClick', formInline);
 };
 
-const form = ref(null);
+const form = ref({});
 const onReset = () => {
     form.value.resetFields();
     emit('searchClick', formInline);

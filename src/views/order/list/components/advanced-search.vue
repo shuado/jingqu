@@ -11,7 +11,7 @@
             </el-form-item>
             <el-form-item label="产品" prop="product">
                 <el-select v-model="formInline.product" placeholder="请选择产品" style="width: 140px" clearable>
-                    <el-option v-for="item in productOptions" :key="item.value" :label="item.label" :value="item.value" />
+                    <el-option v-for="item in productOptions" :key="item.dictKey" :label="item.dictValue" :value="item.dictKey" />
                 </el-select>
             </el-form-item>
             <el-form-item label="订单号" prop="orderNum">
@@ -22,22 +22,22 @@
             </el-form-item>
             <el-form-item label="渠道" prop="channel">
                 <el-select v-model="formInline.channel" placeholder="请选择渠道" style="width: 140px" clearable>
-                    <el-option v-for="item in channelOptions" :key="item.value" :label="item.label" :value="item.value" />
+                    <el-option v-for="item in ChannelType" :key="item.dictKey" :label="item.dictValue" :value="item.dictKey" />
                 </el-select>
             </el-form-item>
             <el-form-item label="收款方式" prop="paymentMethod">
                 <el-select v-model="formInline.paymentMethod" placeholder="请选择收款方式" style="width: 140px" clearable>
-                    <el-option v-for="item in paymentMethodOptions" :key="item.value" :label="item.label" :value="item.value" />
+                    <el-option v-for="item in PaymentMethodType" :key="item.dictKey" :label="item.dictValue" :value="item.dictKey" />
                 </el-select>
             </el-form-item>
             <el-form-item label="状态" prop="orderStatus">
                 <el-select v-model="formInline.orderStatus" placeholder="请选择状态" style="width: 140px" clearable>
-                    <el-option v-for="item in orderStatusOptions" :key="item.value" :label="item.label" :value="item.value" />
+                    <el-option v-for="item in OrderStatus" :key="item.dictKey" :label="item.dictValue" :value="item.dictKey" />
                 </el-select>
             </el-form-item>
             <el-form-item label="营销活动" prop="marketingActivities">
                 <el-select v-model="formInline.marketingActivities" placeholder="请选择营销活动" style="width: 140px" clearable>
-                    <el-option v-for="item in marketingActivitiesOptions" :key="item.value" :label="item.label" :value="item.value" />
+                    <el-option v-for="item in MarketingActivities" :key="item.dictKey" :label="item.dictValue" :value="item.dictKey" />
                 </el-select>
             </el-form-item>
             <el-form-item label="活动名称" prop="activityName">
@@ -48,7 +48,7 @@
             </el-form-item>
             <el-form-item label="开票状态" prop="invoiceStatus">
                 <el-select v-model="formInline.invoiceStatus" placeholder="请选择开票状态" style="width: 140px" clearable>
-                    <el-option v-for="item in invoiceStatusOptions" :key="item.value" :label="item.label" :value="item.value" />
+                    <el-option v-for="item in InvoiceStatus" :key="item.dictKey" :label="item.dictValue" :value="item.dictKey" />
                 </el-select>
             </el-form-item>
             <el-form-item label="取票号" prop="ticketCollectionNum">
@@ -63,7 +63,7 @@
 </template>
 <script setup>
 import { Search, Refresh } from '@element-plus/icons-vue';
-import { reactive } from 'vue';
+import { getProducts } from '@/api/order/list.js';
 
 // 数据
 const formInline = reactive({
@@ -98,69 +98,24 @@ watch(
     },
 );
 
-// 选项
-const productOptions = [
-    {
-        value: '选项1',
-        label: '黄金糕',
-    },
-    {
-        value: '选项2',
-        label: '双皮奶',
-    },
-];
+const [ChannelType, PaymentMethodType, OrderStatus, MarketingActivities, productOptions, InvoiceStatus] = [ref([]), ref([]), ref([]), ref([]), ref([]), ref([])];
 
-const channelOptions = [
-    {
-        value: '选项1',
-        label: '黄金糕',
-    },
-    {
-        value: '选项2',
-        label: '双皮奶',
-    },
-];
+getProducts().then(({ data: res }) => {
+    productOptions.value = res.map((item) => ({
+        dictValue: item,
+        dictKey: item,
+    }));
+});
 
-const paymentMethodOptions = [
-    {
-        value: '选项1',
-        label: '黄金糕',
-    },
-    {
-        value: '选项2',
-        label: '双皮奶',
-    },
-];
-const orderStatusOptions = [
-    {
-        value: '选项1',
-        label: '黄金糕',
-    },
-    {
-        value: '选项2',
-        label: '双皮奶',
-    },
-];
-const marketingActivitiesOptions = [
-    {
-        value: '选项1',
-        label: '黄金糕',
-    },
-    {
-        value: '选项2',
-        label: '双皮奶',
-    },
-];
-const invoiceStatusOptions = [
-    {
-        value: '选项1',
-        label: '黄金糕',
-    },
-    {
-        value: '选项2',
-        label: '双皮奶',
-    },
-];
+import { getDicts } from '@/api/order/index';
+
+getDicts().then(({ data: res }) => {
+    ChannelType.value = res.ChannelType || [];
+    PaymentMethodType.value = res.PaymentMethodType || [];
+    OrderStatus.value = res.OrderStatus || [];
+    MarketingActivities.value = res.MarketingActivities || [];
+    InvoiceStatus.value = res.InvoiceStatus || [];
+});
 
 const emit = defineEmits(['searchClick']);
 const onSubmit = () => {
@@ -171,7 +126,7 @@ const onSubmit = () => {
     emit('searchClick', formInline);
 };
 
-const form = ref(null);
+const form = ref({});
 const onReset = () => {
     form.value.resetFields();
     emit('searchClick', formInline);
