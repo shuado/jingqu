@@ -12,21 +12,21 @@
     <div class="advanced-search">
         <el-form ref="form" :inline="true" :model="formInline">
             <el-form-item label="退票日期" prop="value1">
-                <el-date-picker v-model="formInline.value1" type="daterange" range-separator="-" start-placeholder="开始时间" format="YYYY-MM-DD" value-format="YYYY-MM-DD" end-placeholder="结束时间" />
+                <el-date-picker v-model="formInline.refundTime" type="daterange" range-separator="-" start-placeholder="开始时间" format="YYYY-MM-DD" value-format="YYYY-MM-DD" end-placeholder="结束时间" />
             </el-form-item>
 
-            <el-form-item label="订单号" prop="value2">
-                <el-input v-model="formInline.value32" style="width: 240px" placeholder="请输入订单号" clearable />
+            <el-form-item label="订单号" prop="orderNum">
+                <el-input v-model="formInline.orderNum" style="width: 240px" placeholder="请输入订单号" clearable />
             </el-form-item>
-            <el-form-item label="票号" prop="value3">
-                <el-input v-model="formInline.value3" style="width: 240px" placeholder="请输入票号" clearable />
+            <el-form-item label="票号" prop="ticketCollectionNum">
+                <el-input v-model="formInline.ticketCollectionNum" style="width: 240px" placeholder="请输入票号" clearable />
             </el-form-item>
-            <el-form-item label="退款号" prop="value4">
-                <el-input v-model="formInline.value4" style="width: 240px" placeholder="请输入退款号" clearable />
+            <el-form-item label="退款号" prop="refundNum">
+                <el-input v-model="formInline.refundNum" style="width: 240px" placeholder="请输入退款号" clearable />
             </el-form-item>
-            <el-form-item label="渠道" prop="value5">
-                <el-select v-model="formInline.value5" placeholder="请选择渠道" style="width: 140px" clearable>
-                    <el-option v-for="item in value5Options" :key="item.value" :label="item.label" :value="item.value" />
+            <el-form-item label="渠道" prop="channel">
+                <el-select v-model="formInline.channel" placeholder="请选择渠道" style="width: 140px" clearable>
+                    <el-option v-for="item in channelOptions" :key="item.value" :label="item.label" :value="item.value" />
                 </el-select>
             </el-form-item>
         </el-form>
@@ -42,14 +42,16 @@ import { reactive } from 'vue';
 
 // 数据
 const formInline = reactive({
-    value1: '',
-    value2: '',
-    value3: '',
-    value4: '',
-    value5: '',
+    refundTime: '',
+    refundTimeStart: '',
+    refundTimeEnd: '',
+    orderNum: '',
+    ticketCollectionNum: '',
+    refundNum: '',
+    channel: '',
 });
 
-const value5Options = [
+const channelOptions = [
     {
         value: '选项1',
         label: '黄金糕',
@@ -62,6 +64,10 @@ const value5Options = [
 
 const emit = defineEmits(['searchClick']);
 const onSubmit = () => {
+    if (formInline.refundTime && formInline.refundTime.length > 1) {
+        formInline.refundTimeStart = formInline.refundTime[0];
+        formInline.refundTimeEnd = formInline.refundTime[1];
+    }
     emit('searchClick', formInline);
 };
 

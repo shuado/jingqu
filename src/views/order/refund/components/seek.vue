@@ -6,7 +6,7 @@
 <template>
     <el-row :gutter="20">
         <el-col :span="8">
-            <el-radio-group v-model="seekData.value1">
+            <el-radio-group v-model="seekData.value1" @click="isExpand = false">
                 <el-radio-button label="今天" value="1" />
                 <el-radio-button label="昨天" value="2" />
                 <el-radio-button label="最近一周" value="3" />
@@ -19,7 +19,7 @@
             <el-date-picker v-model="seekData.value2" type="daterange" range-separator="-" start-placeholder="开始时间" format="YYYY-MM-DD" value-format="YYYY-MM-DD" end-placeholder="结束时间" @change="handleCheckChange" />
         </el-col>
         <el-col :span="6">
-            <el-input v-model="seekData.value3" style="margin-left: 24px" placeholder="订单号">
+            <el-input v-model="seekData.value3" style="margin-left: 24px" placeholder="订单号" @click="isExpand = false">
                 <template #append>
                     <el-button :icon="Search" @click="seekClick" />
                 </template>
@@ -87,20 +87,39 @@ watch(
                 default:
                     break;
             }
-            emit('seekClick', seekData.value);
+            deliverEmit();
         }
     },
 );
 
 const emit = defineEmits(['seekClick']);
 const seekClick = () => {
-    emit('seekClick', seekData.value);
+    deliverEmit();
 };
 
 const handleCheckChange = () => {
+    isExpand.value = false;
     seekData.value.value1 = '';
-    emit('seekClick', seekData.value);
+    deliverEmit();
 };
+
+const deliverEmit = () => {
+    let orderTime = ['', ''];
+    if (seekData.value.value2 && seekData.value.value2.length > 1) {
+        orderTime = seekData.value.value2;
+    }
+    const params = {
+        refundTimeStart: orderTime[0],
+        refundTimeEnd: orderTime[1],
+        orderNum: seekData.value.value3,
+    };
+    emit('seekClick', params);
+};
+
+defineExpose({
+    isExpand,
+    seekData,
+});
 </script>
 
 <style scoped lang="scss">

@@ -6,73 +6,68 @@
 <template>
     <div class="advanced-search">
         <el-form ref="form" :inline="true" :model="formInline">
-            <el-form-item label="下单日期" prop="value1">
-                <el-date-picker v-model="formInline.value1" type="daterange" range-separator="-" start-placeholder="开始时间" format="YYYY-MM-DD" value-format="YYYY-MM-DD" end-placeholder="结束时间" />
+            <el-form-item label="下单日期" prop="orderTime">
+                <el-date-picker v-model="formInline.orderTime" type="daterange" range-separator="-" start-placeholder="开始时间" format="YYYY-MM-DD" value-format="YYYY-MM-DD" end-placeholder="结束时间" />
             </el-form-item>
-            <el-form-item label="游玩日期" prop="value2">
-                <el-date-picker v-model="formInline.value2" type="daterange" range-separator="-" start-placeholder="开始时间" format="YYYY-MM-DD" value-format="YYYY-MM-DD" end-placeholder="结束时间" />
+            <el-form-item label="游玩日期" prop="playtime">
+                <el-date-picker v-model="formInline.playtime" type="daterange" range-separator="-" start-placeholder="开始时间" format="YYYY-MM-DD" value-format="YYYY-MM-DD" end-placeholder="结束时间" />
             </el-form-item>
-            <el-form-item label="核销日期" prop="value3">
-                <el-date-picker v-model="formInline.value3" type="daterange" range-separator="-" start-placeholder="开始时间" format="YYYY-MM-DD" value-format="YYYY-MM-DD" end-placeholder="结束时间" />
+            <el-form-item label="核销日期" prop="recentWriteOff">
+                <el-date-picker v-model="formInline.recentWriteOff" type="daterange" range-separator="-" start-placeholder="开始时间" format="YYYY-MM-DD" value-format="YYYY-MM-DD" end-placeholder="结束时间" />
             </el-form-item>
-            <el-form-item label="退款日期" prop="value4">
-                <el-date-picker v-model="formInline.value5" type="daterange" range-separator="-" start-placeholder="开始时间" format="YYYY-MM-DD" value-format="YYYY-MM-DD" end-placeholder="结束时间" />
+            <el-form-item label="退款日期" prop="refundTime">
+                <el-date-picker v-model="formInline.refundTime" type="daterange" range-separator="-" start-placeholder="开始时间" format="YYYY-MM-DD" value-format="YYYY-MM-DD" end-placeholder="结束时间" />
             </el-form-item>
-            <el-form-item label="产品类型" prop="value5">
-                <el-select v-model="formInline.value5" placeholder="请选择产品类型" style="width: 140px" clearable>
-                    <el-option v-for="item in value5Options" :key="item.value" :label="item.label" :value="item.value" />
+            <el-form-item label="售票员" prop="conductor">
+                <el-select v-model="formInline.conductor" placeholder="请选择售票员" style="width: 140px" clearable>
+                    <el-option v-for="item in conductorOptions" :key="item.value" :label="item.label" :value="item.value" />
                 </el-select>
             </el-form-item>
-            <el-form-item label="售票员" prop="value6">
-                <el-select v-model="formInline.value6" placeholder="请选择售票员" style="width: 140px" clearable>
-                    <el-option v-for="item in value6Options" :key="item.value" :label="item.label" :value="item.value" />
+            <el-form-item label="渠道" prop="channel">
+                <el-select v-model="formInline.channel" placeholder="请选择渠道" style="width: 140px" clearable>
+                    <el-option v-for="item in channelOptions" :key="item.value" :label="item.label" :value="item.value" />
                 </el-select>
             </el-form-item>
-            <el-form-item label="渠道" prop="value7">
-                <el-select v-model="formInline.value7" placeholder="请选择渠道" style="width: 140px" clearable>
-                    <el-option v-for="item in value7Options" :key="item.value" :label="item.label" :value="item.value" />
+            <el-form-item label="收款方式" prop="paymentMethod">
+                <el-select v-model="formInline.paymentMethod" placeholder="请选择收款方式" style="width: 140px" clearable>
+                    <el-option v-for="item in paymentMethodOptions" :key="item.value" :label="item.label" :value="item.value" />
                 </el-select>
             </el-form-item>
-            <el-form-item label="收款方式" prop="value8">
-                <el-select v-model="formInline.value8" placeholder="请选择收款方式" style="width: 140px" clearable>
-                    <el-option v-for="item in value8Options" :key="item.value" :label="item.label" :value="item.value" />
+            <el-form-item label="订单状态" prop="orderStatus">
+                <el-select v-model="formInline.orderStatus" placeholder="请选择订单状态" style="width: 140px" clearable>
+                    <el-option v-for="item in orderStatusOptions" :key="item.value" :label="item.label" :value="item.value" />
                 </el-select>
             </el-form-item>
-            <el-form-item label="订单状态" prop="value9">
-                <el-select v-model="formInline.value9" placeholder="请选择订单状态" style="width: 140px" clearable>
-                    <el-option v-for="item in value9Options" :key="item.value" :label="item.label" :value="item.value" />
+            <el-form-item label="门票状态" prop="ticketStatus">
+                <el-select v-model="formInline.ticketStatus" placeholder="请选择门票状态" style="width: 140px" clearable>
+                    <el-option v-for="item in ticketStatusOptions" :key="item.value" :label="item.label" :value="item.value" />
                 </el-select>
             </el-form-item>
-            <el-form-item label="门票状态" prop="value10">
-                <el-select v-model="formInline.value10" placeholder="请选择门票状态" style="width: 140px" clearable>
-                    <el-option v-for="item in value10Options" :key="item.value" :label="item.label" :value="item.value" />
+            <el-form-item label="分销商" prop="distributor">
+                <el-select v-model="formInline.distributor" placeholder="请选择分销商" style="width: 140px" clearable>
+                    <el-option v-for="item in distributorOptions" :key="item.value" :label="item.label" :value="item.value" />
                 </el-select>
             </el-form-item>
-            <el-form-item label="分销商" prop="value11">
-                <el-select v-model="formInline.value11" placeholder="请选择分销商" style="width: 140px" clearable>
-                    <el-option v-for="item in value11Options" :key="item.value" :label="item.label" :value="item.value" />
-                </el-select>
-            </el-form-item>
-            <el-form-item label="产品" prop="value12">
-                <el-select v-model="formInline.value12" placeholder="请选择产品" style="width: 140px" clearable>
-                    <el-option v-for="item in value12Options" :key="item.value" :label="item.label" :value="item.value" />
+            <el-form-item label="产品" prop="product">
+                <el-select v-model="formInline.product" placeholder="请选择产品" style="width: 140px" clearable>
+                    <el-option v-for="item in productOptions" :key="item.value" :label="item.label" :value="item.value" />
                 </el-select>
             </el-form-item>
 
-            <el-form-item label="订单号" prop="value13">
-                <el-input v-model="formInline.value13" style="width: 240px" placeholder="请输入订单号" clearable />
+            <el-form-item label="订单号" prop="orderNum">
+                <el-input v-model="formInline.orderNum" style="width: 240px" placeholder="请输入订单号" clearable />
             </el-form-item>
-            <el-form-item label="票号" prop="value14">
-                <el-input v-model="formInline.value14" style="width: 240px" placeholder="请输入票号" clearable />
+            <el-form-item label="票号" prop="ticketCollectionNum">
+                <el-input v-model="formInline.ticketCollectionNum" style="width: 240px" placeholder="请输入票号" clearable />
             </el-form-item>
-            <el-form-item label="游客姓名" prop="value15">
-                <el-input v-model="formInline.value15" style="width: 240px" placeholder="请输入游客姓名" clearable />
+            <el-form-item label="游客姓名" prop="ticketBuyerUserName">
+                <el-input v-model="formInline.ticketBuyerUserName" style="width: 240px" placeholder="请输入游客姓名" clearable />
             </el-form-item>
-            <el-form-item label="下单人手机号" prop="value16">
-                <el-input v-model="formInline.value16" style="width: 240px" placeholder="请输入下单人手机号" maxlength="11" clearable />
+            <el-form-item label="下单人手机号" prop="ticketBuyerUserPhone">
+                <el-input v-model="formInline.ticketBuyerUserPhone" style="width: 240px" placeholder="请输入下单人手机号" maxlength="11" clearable />
             </el-form-item>
-            <el-form-item label="绑定卡号" prop="value17">
-                <el-input v-model="formInline.value17" style="width: 240px" placeholder="请输入绑定卡号" maxlength="32" clearable />
+            <el-form-item label="绑定卡号" prop="cardNum">
+                <el-input v-model="formInline.cardNum" style="width: 240px" placeholder="请输入绑定卡号" maxlength="32" clearable />
             </el-form-item>
         </el-form>
         <div style="width: 100%; text-align: right">
@@ -87,27 +82,32 @@ import { reactive } from 'vue';
 
 // 数据
 const formInline = reactive({
-    value1: '',
-    value2: '',
-    value3: '',
-    value4: '',
-    value5: '',
-    value6: '',
-    value7: '',
-    value8: '',
-    value9: '',
-    value10: '',
-    value11: '',
-    value12: '',
-    value13: '',
-    value14: '',
-    value15: '',
-    value16: '',
-    value17: '',
+    orderTime: '',
+    orderTimeStart: '',
+    orderTimeEnd: '',
+    playtime: '',
+    playtimeStart: '',
+    playtimeEnd: '',
+    recentWriteOff: '',
+    recentWriteOffTimeStart: '',
+    recentWriteOffTimeEnd: '',
+    refundTime: '',
+    refundTimeStart: '',
+    refundTimeEnd: '',
+    conductor: '',
+    channel: '',
+    paymentMethod: '',
+    orderStatus: '',
+    ticketStatus: '',
+    distributor: '',
+    product: '',
+    orderNum: '',
+    ticketCollectionNum: '',
+    ticketBuyerUserName: '',
+    ticketBuyerUserPhone: '',
+    cardNum: '',
 });
-
-// 选项
-const value5Options = [
+const conductorOptions = [
     {
         value: '选项1',
         label: '黄金糕',
@@ -118,7 +118,47 @@ const value5Options = [
     },
 ];
 
-const value6Options = [
+const channelOptions = [
+    {
+        value: '选项1',
+        label: '黄金糕',
+    },
+    {
+        value: '选项2',
+        label: '双皮奶',
+    },
+];
+const paymentMethodOptions = [
+    {
+        value: '选项1',
+        label: '黄金糕',
+    },
+    {
+        value: '选项2',
+        label: '双皮奶',
+    },
+];
+const orderStatusOptions = [
+    {
+        value: '选项1',
+        label: '黄金糕',
+    },
+    {
+        value: '选项2',
+        label: '双皮奶',
+    },
+];
+const ticketStatusOptions = [
+    {
+        value: '选项1',
+        label: '黄金糕',
+    },
+    {
+        value: '选项2',
+        label: '双皮奶',
+    },
+];
+const distributorOptions = [
     {
         value: '选项1',
         label: '黄金糕',
@@ -129,58 +169,7 @@ const value6Options = [
     },
 ];
 
-const value7Options = [
-    {
-        value: '选项1',
-        label: '黄金糕',
-    },
-    {
-        value: '选项2',
-        label: '双皮奶',
-    },
-];
-const value8Options = [
-    {
-        value: '选项1',
-        label: '黄金糕',
-    },
-    {
-        value: '选项2',
-        label: '双皮奶',
-    },
-];
-const value9Options = [
-    {
-        value: '选项1',
-        label: '黄金糕',
-    },
-    {
-        value: '选项2',
-        label: '双皮奶',
-    },
-];
-const value10Options = [
-    {
-        value: '选项1',
-        label: '黄金糕',
-    },
-    {
-        value: '选项2',
-        label: '双皮奶',
-    },
-];
-const value11Options = [
-    {
-        value: '选项1',
-        label: '黄金糕',
-    },
-    {
-        value: '选项2',
-        label: '双皮奶',
-    },
-];
-
-const value12Options = [
+const productOptions = [
     {
         value: '选项1',
         label: '黄金糕',
