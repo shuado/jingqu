@@ -134,7 +134,7 @@ const onReset = () => {
 </script>
 <style lang="scss" scope>
 .advanced-search {
-    width: 100%;
+    width: calc(100% - 24px);
     margin: 12px;
     height: fit-content;
     padding: 12px;

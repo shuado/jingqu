@@ -9,7 +9,7 @@
             <el-button :icon="Upload" :loading="uploadLoading" style="margin-left: 12px" type="success" @click="importClick">导入</el-button>
         </el-upload>
         <advanced-search @search-click="searchClick" />
-
+        <calculate />
         <avue-crud ref="crudRef" v-model:page="pageOption" v-model="form" :option="option" :data="data" @current-change="pageOption.currentChange" @size-change="pageOption.sizeChange"> </avue-crud>
     </basic-container>
 </template>
@@ -18,6 +18,8 @@ import { Upload } from '@element-plus/icons-vue';
 import { ElMessage } from 'element-plus';
 import { uploadList, getList } from '@/api/order/definite.js';
 import useOption from './hooks/useOption';
+const calculate = defineAsyncComponent(() => import('./components/calculate.vue'));
+
 import { getDicts } from '@/api/order/index';
 
 getDicts().then((res) => {

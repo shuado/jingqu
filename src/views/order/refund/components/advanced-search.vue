@@ -90,8 +90,8 @@ const onReset = () => {
 </script>
 <style lang="scss" scope>
 .advanced-search {
+    width: calc(100% - 24px);
     margin: 12px;
-    width: 100%;
     height: fit-content;
     padding: 12px;
     box-sizing: border-box;
