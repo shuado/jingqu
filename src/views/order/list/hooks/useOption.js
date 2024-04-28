@@ -30,15 +30,15 @@ const option = {
     searchShow: false,
     stripe: true,
     gridBtn: true,
-    searchMenuSpan: 12,
-    searchLabelWidth: 100,
-    refreshBtn: true,
+    refreshBtn: false,
+    border: true,
     menuAlign: 'center',
     emptyBtnText: '重置',
     editBtn: false,
     viewBtn: true,
     addBtn: false,
     dialogFullscreen: true,
+    menuWidth: 100,
     delBtn: false,
     align: 'left',
     columnBtn: false,
@@ -69,26 +69,23 @@ const option = {
         },
         {
             label: '单价',
-
             prop: 'price',
         },
         {
             label: '总数',
-
             prop: 'total',
         },
         {
             label: '退票数',
-
             prop: 'refundsNum',
         },
         {
             label: '核销数',
-
             prop: 'writeOffNum',
         },
         {
             label: '收款方式',
+            width: 200,
             prop: 'paymentMethodCn',
         },
         {
@@ -113,6 +110,7 @@ const option = {
         },
         {
             label: '下单时间',
+            width: 200,
             prop: 'orderTime',
             type: 'date',
             format: 'YYYY-MM-DD HH:mm:ss',
@@ -120,10 +118,12 @@ const option = {
         },
         {
             label: '订单状态',
+            width: 200,
             prop: 'orderStatusCn',
         },
         {
             label: '分销商',
+            width: 200,
             prop: 'distributor',
         },
         {
@@ -144,6 +144,7 @@ const option = {
         },
         {
             label: '开票状态',
+            width: 200,
             prop: 'invoiceStatusCn',
         },
         {

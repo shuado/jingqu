@@ -26,6 +26,7 @@ import useOption from './hooks/useOption';
 const option = useOption();
 const data = ref([]);
 const form = ref({});
+
 const pageOption = usePagingOption();
 
 const handleExceed = (files, uploadFiles) => {
