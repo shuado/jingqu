@@ -73,7 +73,7 @@ const formInline = reactive({
     product: '',
     orderNum: '',
     ticketBuyerUserPhone: '',
-    channelOptions: '',
+    channel: '',
     paymentMethod: '',
     orderStatus: '',
     marketingActivities: '',
@@ -85,6 +85,17 @@ const formInline = reactive({
 
 // 选项
 const productOptions = [
+    {
+        value: '选项1',
+        label: '黄金糕',
+    },
+    {
+        value: '选项2',
+        label: '双皮奶',
+    },
+];
+
+const channelOptions = [
     {
         value: '选项1',
         label: '黄金糕',

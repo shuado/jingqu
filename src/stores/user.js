@@ -43,7 +43,6 @@ export const useUserStore = defineStore('user', {
                 this.user.selectBySysType = sys.user.selectBySysType;
             }
         },
-
         // 设置用户信息
         setUser(userInfo) {
             this.user.info = userInfo;

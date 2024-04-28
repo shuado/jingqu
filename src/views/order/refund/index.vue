@@ -19,6 +19,12 @@ import { Upload } from '@element-plus/icons-vue';
 import { ElMessage } from 'element-plus';
 import { uploadList } from '@/api/order/refund.js';
 
+import { getDicts } from '@/api/order/index';
+
+getDicts().then((res) => {
+    localStorage.setItem('dicts-all', JSON.stringify(res.data));
+});
+
 const seek = defineAsyncComponent(() => import('./components/seek.vue'));
 const AdvancedSearch = defineAsyncComponent(() => import('./components/advanced-search.vue'));
 import useOption from './hooks/useOption';

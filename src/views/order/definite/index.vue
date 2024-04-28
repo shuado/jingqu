@@ -17,8 +17,13 @@
 import { Upload } from '@element-plus/icons-vue';
 import { ElMessage } from 'element-plus';
 import { uploadList } from '@/api/order/definite.js';
-
 import useOption from './hooks/useOption';
+import { getDicts } from '@/api/order/index';
+
+getDicts().then((res) => {
+    localStorage.setItem('dicts-all', JSON.stringify(res.data));
+});
+
 const AdvancedSearch = defineAsyncComponent(() => import('./components/advanced-search.vue'));
 
 const handleExceed = (files, uploadFiles) => {
