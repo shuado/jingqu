@@ -14,7 +14,7 @@ export default [
         meta: {
             icon: '',
             // show: true,
-            // authority: 1,
+            authority: 1,
             title: '订单管理',
         },
         children: [
@@ -23,7 +23,7 @@ export default [
                 name: 'OrderCount',
                 meta: {
                     title: '数据汇总',
-                    // authority: 1,
+                    authority: 1,
                     icon: 'ScaleToOriginal',
                     show: true, // 是否在侧栏中显示
                 },
@@ -34,7 +34,7 @@ export default [
                 name: 'OrderList',
                 meta: {
                     title: '订单列表',
-                    // authority: 1,
+                    authority: 1,
                     icon: 'Document',
                     show: true, // 是否在侧栏中显示
                 },
@@ -45,7 +45,7 @@ export default [
                 name: 'OrderRefund',
                 meta: {
                     title: '退单列表',
-                    // authority: 1,
+                    authority: 1,
                     icon: 'Memo',
                     show: true, // 是否在侧栏中显示
                 },
@@ -56,7 +56,7 @@ export default [
                 name: 'OrderDefinite',
                 meta: {
                     title: '订单明细列表',
-                    // authority: 1,
+                    authority: 1,
                     icon: 'DocumentCopy',
                     show: true, // 是否在侧栏中显示
                 },

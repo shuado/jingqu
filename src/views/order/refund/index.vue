@@ -5,7 +5,7 @@
 -->
 <template>
     <basic-container>
-        <el-upload ref="upload" :limit="1" :disabled="uploadLoading" :show-file-list="false" :on-exceed="handleExceed" :auto-upload="true" :http-request="httpRequest">
+        <el-upload ref="upload" :limit="1" accept=".xls,.xlsx" :disabled="uploadLoading" :show-file-list="false" :on-exceed="handleExceed" :auto-upload="true" :http-request="httpRequest">
             <el-button :icon="Upload" :loading="uploadLoading" style="margin-bottom: 12px" type="success" @click="importClick">导入</el-button>
         </el-upload>
         <seek @seek-click="search">
