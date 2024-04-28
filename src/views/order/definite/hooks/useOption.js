@@ -109,6 +109,7 @@ const option = {
 
         {
             label: '收款方式',
+            width: 200,
             prop: 'paymentMethodCn',
         },
 
@@ -139,6 +140,7 @@ const option = {
 
         {
             label: '下单时间',
+            width: 200,
             prop: 'orderTime',
             type: 'date',
             format: 'YYYY-MM-DD HH:mm:ss',
@@ -148,6 +150,7 @@ const option = {
         {
             label: '游玩时间',
             prop: 'playtime',
+            width: 200,
             type: 'date',
             format: 'YYYY-MM-DD HH:mm:ss',
             valueFormat: 'YYYY-MM-DD HH:mm:ss',
@@ -155,6 +158,7 @@ const option = {
         {
             label: '预约时间',
             prop: 'appointmentTime',
+            width: 200,
             type: 'date',
             format: 'YYYY-MM-DD HH:mm:ss',
             valueFormat: 'YYYY-MM-DD HH:mm:ss',
@@ -162,6 +166,7 @@ const option = {
         {
             label: '最近核销时间',
             prop: 'recentWriteOffTime',
+            width: 200,
             type: 'date',
             format: 'YYYY-MM-DD HH:mm:ss',
             valueFormat: 'YYYY-MM-DD HH:mm:ss',
@@ -169,6 +174,7 @@ const option = {
         {
             label: '退款时间',
             prop: 'refundTime',
+            width: 200,
             type: 'date',
             format: 'YYYY-MM-DD HH:mm:ss',
             valueFormat: 'YYYY-MM-DD HH:mm:ss',
@@ -176,10 +182,12 @@ const option = {
 
         {
             label: '分销商',
+            width: 200,
             prop: 'distributor',
         },
         {
             label: '售票员',
+            width: 200,
             prop: 'conductor',
         },
 

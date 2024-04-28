@@ -12,7 +12,7 @@
             <div class="box-content">
                 <p>
                     <span>票价：</span>
-                    <span class="data-num">{{ totalData.fare }}</span>
+                    <span class="data-num"> {{ totalData.fare }}</span>
                 </p>
                 <p>
                     <span>折后价：</span>
@@ -46,16 +46,39 @@
     </div>
 </template>
 <script setup>
-const totalData = ref({
-    fare: '1',
-    discountedPrice: '2',
-    settlementPrice: '3',
+import { getTotal } from '@/api/order/definite.js';
+let params = ref({});
+
+const totalData = reactive({
+    fare: 0,
+    discountedPrice: 0,
+    settlementPrice: 0,
 });
 
-const pageData = ref({
-    fare: '1',
-    discountedPrice: '2',
-    settlementPrice: '3',
+const pageData = reactive({
+    fare: 0,
+    discountedPrice: 0,
+    settlementPrice: 0,
+});
+
+const getData = () => {
+    // getTotal(params.value).then(({ data: res }) => {
+    //     pageData.fare = res.fare;
+    //     pageData.discountedPrice = res.discountedPrice;
+    //     pageData.settlementPrice = res.settlementPrice;
+    // });
+
+    getTotal({}).then(({ data: res }) => {
+        totalData.fare = res.fare;
+        totalData.discountedPrice = res.discountedPrice;
+        totalData.settlementPrice = res.settlementPrice;
+    });
+};
+
+defineExpose({
+    getData,
+    params,
+    pageData,
 });
 </script>
 <style lang="scss" scoped>

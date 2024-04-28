@@ -50,3 +50,12 @@ export function getProducts() {
         url: prefixUrl + '/goodsOrderDetail/getProducts',
     });
 }
+
+// 获取产品列表
+
+export function getTotal(data) {
+    return JTRequest.post({
+        url: prefixUrl + '/goodsOrderDetail/total',
+        data,
+    });
+}

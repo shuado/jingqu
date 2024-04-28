@@ -11,7 +11,7 @@
         <seek ref="seekRef" @seek-click="search">
             <advanced-search @search-click="searchClick" />
         </seek>
-        <avue-crud ref="crudRef" v-model:page="pageOption" v-model="form" :option="option" :data="data" @current-change="pageOption.currentChange" @size-change="pageOption.sizeChange"> </avue-crud>
+        <avue-crud ref="crudRef" v-model="form" :page="pageOption" :option="option" :data="data" @current-change="pageOption.currentChange" @size-change="pageOption.sizeChange"> </avue-crud>
     </basic-container>
 </template>
 <script setup>
