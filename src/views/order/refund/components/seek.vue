@@ -6,7 +6,7 @@
 <template>
     <el-row :gutter="20">
         <el-col :span="8">
-            <el-radio-group v-model="seekData.value1" @click="isExpand = false">
+            <el-radio-group v-model="seekData.value1" :disabled="isExpand" @click="isExpand = false">
                 <el-radio-button label="今天" value="1" />
                 <el-radio-button label="昨天" value="2" />
                 <el-radio-button label="最近一周" value="3" />
@@ -16,10 +16,10 @@
             </el-radio-group>
         </el-col>
         <el-col :span="8">
-            <el-date-picker v-model="seekData.value2" type="daterange" range-separator="-" start-placeholder="开始时间" format="YYYY-MM-DD" value-format="YYYY-MM-DD" end-placeholder="结束时间" @change="handleCheckChange" />
+            <el-date-picker v-model="seekData.value2" :disabled="isExpand" type="daterange" range-separator="-" start-placeholder="开始时间" format="YYYY-MM-DD" value-format="YYYY-MM-DD" end-placeholder="结束时间" @change="handleCheckChange" />
         </el-col>
         <el-col :span="6">
-            <el-input v-model="seekData.value3" style="margin-left: 24px" placeholder="订单号" @click="isExpand = false">
+            <el-input v-model="seekData.value3" :disabled="isExpand" style="margin-left: 24px" placeholder="订单号" @click="isExpand = false">
                 <template #append>
                     <el-button :icon="Search" @click="seekClick" />
                 </template>
