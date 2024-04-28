@@ -174,6 +174,7 @@ const onSubmit = () => {
 const form = ref(null);
 const onReset = () => {
     form.value.resetFields();
+    emit('searchClick', formInline);
 };
 </script>
 <style lang="scss" scope>
