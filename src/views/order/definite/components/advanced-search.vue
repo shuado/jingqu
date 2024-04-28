@@ -107,6 +107,71 @@ const formInline = reactive({
     ticketBuyerUserPhone: '',
     cardNum: '',
 });
+
+watch(
+    () => formInline.orderTime,
+    (val) => {
+        if (val && val[0] && val[1]) {
+            formInline.orderTimeStart = val[0] + ' 00:00:00';
+            formInline.orderTimeEnd = val[1] + ' 23:59:59';
+        } else {
+            formInline.orderTimeStart = '';
+            formInline.orderTimeEnd = '';
+        }
+    },
+    {
+        deep: true,
+    },
+);
+
+watch(
+    () => formInline.playtime,
+    (val) => {
+        if (val && val[0] && val[1]) {
+            formInline.playtimeStart = val[0] + ' 00:00:00';
+            formInline.playtimeEnd = val[1] + ' 23:59:59';
+        } else {
+            formInline.orderTimeStart = '';
+            formInline.playtimeEnd = '';
+        }
+    },
+    {
+        deep: true,
+    },
+);
+
+watch(
+    () => formInline.recentWriteOff,
+    (val) => {
+        if (val && val[0] && val[1]) {
+            formInline.recentWriteOffTimeStart = val[0] + ' 00:00:00';
+            formInline.recentWriteOffTimeEnd = val[1] + ' 23:59:59';
+        } else {
+            formInline.recentWriteOffTimeStart = '';
+            formInline.recentWriteOffTimeEnd = '';
+        }
+    },
+    {
+        deep: true,
+    },
+);
+
+watch(
+    () => formInline.refundTime,
+    (val) => {
+        if (val && val[0] && val[1]) {
+            formInline.refundTimeStart = val[0] + ' 00:00:00';
+            formInline.refundTimeEnd = val[1] + ' 23:59:59';
+        } else {
+            formInline.refundTimeStart = '';
+            formInline.refundTimeEnd = '';
+        }
+    },
+    {
+        deep: true,
+    },
+);
+
 const conductorOptions = [
     {
         value: '选项1',

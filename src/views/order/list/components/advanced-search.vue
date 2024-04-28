@@ -82,6 +82,21 @@ const formInline = reactive({
     invoiceStatus: '',
     ticketCollectionNum: '',
 });
+watch(
+    () => formInline.orderTime,
+    (val) => {
+        if (val && val[0] && val[1]) {
+            formInline.orderTimeStart = val[0] + ' 00:00:00';
+            formInline.orderTimeEnd = val[1] + ' 23:59:59';
+        } else {
+            formInline.orderTimeStart = '';
+            formInline.orderTimeEnd = '';
+        }
+    },
+    {
+        deep: true,
+    },
+);
 
 // 选项
 const productOptions = [

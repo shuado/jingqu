@@ -50,6 +50,21 @@ const formInline = reactive({
     refundNum: '',
     channel: '',
 });
+watch(
+    () => formInline.refundTime,
+    (val) => {
+        if (val && val[0] && val[1]) {
+            formInline.refundTimeStart = val[0] + ' 00:00:00';
+            formInline.refundTimeEnd = val[1] + ' 23:59:59';
+        } else {
+            formInline.refundTimeStart = '';
+            formInline.refundTimeEnd = '';
+        }
+    },
+    {
+        deep: true,
+    },
+);
 
 const channelOptions = [
     {
