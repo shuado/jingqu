@@ -47,7 +47,7 @@ const option = {
     column: [
         {
             label: '退款号',
-            prop: 'id1',
+            prop: 'refundNum',
             width: 200,
             type: 'number',
         },
@@ -55,50 +55,50 @@ const option = {
             label: '订单号',
             width: 200,
             type: 'number',
-            prop: 'id2',
+            prop: 'orderNum',
         },
         {
             label: '票号',
             width: 200,
             type: 'number',
-            prop: 'id2',
+            prop: 'ticketCollectionNum',
         },
 
         {
             label: '产品',
             width: 200,
-            prop: 'id10',
+            prop: 'product',
         },
 
         {
             label: '渠道',
             width: 200,
-            prop: 'id13',
+            prop: 'channelCn',
         },
 
         {
             label: '退票数',
             type: 'number',
-            prop: 'id7',
+            prop: 'refundTotalNum',
         },
 
         {
             label: '退款金额',
             width: 200,
             type: 'number',
-            prop: 'id4',
+            prop: 'refundAmount',
         },
         {
             label: '退款费率',
             width: 200,
             type: 'number',
-            prop: 'id4',
+            prop: 'refundRate',
         },
         {
             label: '退款手续费',
             width: 200,
             type: 'number',
-            prop: 'id4',
+            prop: 'refundHandlingFee',
         },
         {
             label: '退款时间',
@@ -106,13 +106,13 @@ const option = {
             type: 'date',
             format: 'YYYY-MM-DD HH:mm:ss',
             valueFormat: 'YYYY-MM-DD HH:mm:ss',
-            prop: 'id4',
+            prop: 'refundTime',
         },
 
         {
             label: '退款人',
             width: 200,
-            prop: 'id3',
+            prop: 'refunder',
         },
     ],
 };
