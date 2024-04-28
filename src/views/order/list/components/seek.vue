@@ -65,25 +65,25 @@ watch(
 
                 case '2':
                     // 获取昨天时间
-                    seekData.value.value2 = [dayjs().subtract(1, 'day').format('YYYY-MM-DD 00:00:00'), dayjs().subtract(1, 'day').format('YYYY-MM-DD  23:59:59')];
+                    seekData.value.value2 = [dayjs().subtract(1, 'day').format('YYYY-MM-DD 00:00:00'), dayjs().subtract(1, 'day').format('YYYY-MM-DD 23:59:59')];
                     break;
 
                 case '3':
                     // 获取最近一周时间
-                    seekData.value.value2 = [dayjs().subtract(7, 'day').format('YYYY-MM-DD 00:00:00'), dayjs().subtract(1, 'day').format('YYYY-MM-DD   23:59:59')];
+                    seekData.value.value2 = [dayjs().subtract(7, 'day').format('YYYY-MM-DD 00:00:00'), dayjs().subtract(1, 'day').format('YYYY-MM-DD 23:59:59')];
                     break;
 
                 case '4':
                     // 获取最近一个月时间
-                    seekData.value.value2 = [dayjs().subtract(30, 'day').format('YYYY-MM-DD 00:00:00'), dayjs().subtract(1, 'day').format('YYYY-MM-DD  23:59:59')];
+                    seekData.value.value2 = [dayjs().subtract(30, 'day').format('YYYY-MM-DD 00:00:00'), dayjs().subtract(1, 'day').format('YYYY-MM-DD 23:59:59')];
                     break;
                 case '5':
                     // 获取本周时间
-                    seekData.value.value2 = [dayjs().day(1).format('YYYY-MM-DD 00:00:00'), dayjs().day(7).format('YYYY-MM-DD  23:59:59')];
+                    seekData.value.value2 = [dayjs().day(1).format('YYYY-MM-DD 00:00:00'), dayjs().day(7).format('YYYY-MM-DD 23:59:59')];
                     break;
                 case '6':
                     // 获取本月时间
-                    seekData.value.value2 = [dayjs().startOf('month').format('YYYY-MM-DD 00:00:00'), dayjs().endOf('month').format('YYYY-MM-DD  23:59:59')];
+                    seekData.value.value2 = [dayjs().startOf('month').format('YYYY-MM-DD 00:00:00'), dayjs().endOf('month').format('YYYY-MM-DD 23:59:59')];
                     break;
                 default:
                     break;
@@ -101,6 +101,8 @@ const seekClick = () => {
 const handleCheckChange = () => {
     isExpand.value = false;
     seekData.value.value1 = '';
+    seekData.value.value2[0] = seekData.value.value2[0] + ' 00:00:00';
+    seekData.value.value2[1] = seekData.value.value2[1] + ' 23:59:59';
     deliverEmit();
 };
 

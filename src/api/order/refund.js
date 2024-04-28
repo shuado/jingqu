@@ -23,3 +23,10 @@ export function uploadList(data) {
         data,
     });
 }
+
+export function getList(data) {
+    return JTRequest.post({
+        url: prefixUrl + '/refundOrder/list',
+        data,
+    });
+}

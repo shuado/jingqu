@@ -10,13 +10,13 @@
         </el-upload>
         <advanced-search @search-click="searchClick" />
 
-        <avue-crud ref="crudRef" v-model:page="pageOption" v-model="form" :option="option" :data="data" @size-change="sizeChange"> </avue-crud>
+        <avue-crud ref="crudRef" v-model:page="pageOption" v-model="form" :option="option" :data="data" @current-change="pageOption.currentChange" @size-change="pageOption.sizeChange"> </avue-crud>
     </basic-container>
 </template>
 <script setup>
 import { Upload } from '@element-plus/icons-vue';
 import { ElMessage } from 'element-plus';
-import { uploadList } from '@/api/order/definite.js';
+import { uploadList, getList } from '@/api/order/definite.js';
 import useOption from './hooks/useOption';
 import { getDicts } from '@/api/order/index';
 
@@ -51,13 +51,16 @@ const httpRequest = (config) => {
         });
 };
 
+const searchData = ref({});
 /**
  * @Description: 搜索
  * @author: 舒
  * @return {*}
  */
+
 const searchClick = (val) => {
-    console.log(val);
+    searchData.value = val;
+    pageOption.change();
 };
 
 /**
@@ -71,41 +74,22 @@ const importClick = () => {
 
 //获取this
 const option = useOption();
-const data = ref(null);
+const data = ref([]);
 const form = ref({});
 const pageOption = usePagingOption();
 
-/**
- * @description: 页数
- * @param {*} pageSize
- * @return {*}
- */
-const sizeChange = (pageSize) => {
-    pageOption.pageSize = pageSize;
-    // onLoad(search.value);
+pageOption.change = () => {
+    const params = {
+        ...searchData.value,
+        current: pageOption.currentPage,
+        size: pageOption.pageSize,
+    };
+    getList(params).then((res) => {
+        data.value = res.data;
+        pageOption.total = res.total;
+    });
 };
-// const page = ref({
-//     total: 1,
-// });
-console.log(pageOption);
-data.value = [
-    {
-        id: '张三',
-        id1: 12,
-    },
-    // {
-    //     name: '李四',
-    //     sex: 13,
-    // },
-];
-function rowSave(row, done, loading) {
-    done(row);
-}
-function rowDel(row, index, done) {
-    done(row);
-}
-function rowUpdate(row, index, done, loading) {
-    done(row);
-}
+
+pageOption.change();
 </script>
 <style lang="scss" scoped></style>

@@ -49,12 +49,11 @@ const option = {
             label: '订单号',
             prop: 'orderNum',
             width: 200,
-            type: 'number',
         },
         {
             label: '取票号',
             width: 200,
-            type: 'number',
+
             prop: 'ticketCollectionNum',
         },
         {
@@ -65,27 +64,27 @@ const option = {
         {
             label: '手机',
             width: 200,
-            type: 'number',
+
             prop: 'ticketBuyerUserPhone',
         },
         {
             label: '单价',
-            type: 'number',
+
             prop: 'price',
         },
         {
             label: '总数',
-            type: 'number',
+
             prop: 'total',
         },
         {
             label: '退票数',
-            type: 'number',
+
             prop: 'refundsNum',
         },
         {
             label: '核销数',
-            type: 'number',
+
             prop: 'writeOffNum',
         },
         {
@@ -99,12 +98,12 @@ const option = {
         },
         {
             label: '总金额',
-            type: 'number',
+
             prop: 'totalAmount',
         },
         {
             label: '实收金额',
-            type: 'number',
+
             prop: 'actualAmountReceived',
         },
         {
@@ -130,7 +129,7 @@ const option = {
         {
             label: '支付流水号',
             width: 200,
-            type: 'number',
+
             prop: 'serialNum',
         },
         {

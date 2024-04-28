@@ -8,14 +8,14 @@
         <el-upload ref="upload" :limit="1" accept=".xls,.xlsx" :disabled="uploadLoading" :show-file-list="false" :on-exceed="handleExceed" :auto-upload="true" :http-request="httpRequest">
             <el-button :icon="Upload" :loading="uploadLoading" style="margin-bottom: 12px" type="success" @click="importClick">导入</el-button>
         </el-upload>
-        <seek @seek-click="search"> <advanced-search @search-click="searchClick" /></seek>
-        <avue-crud ref="crudRef" v-model:page="pageOption" v-model="form" :option="option" :data="data" @size-change="sizeChange"> </avue-crud>
+        <seek ref="seekRef" @seek-click="search"> <advanced-search @search-click="searchClick" /></seek>
+        <avue-crud ref="crudRef" v-model:page="pageOption" v-model="form" :option="option" :data="data" @current-change="pageOption.currentChange" @size-change="pageOption.sizeChange"> </avue-crud>
     </basic-container>
 </template>
 <script setup>
 import { Upload } from '@element-plus/icons-vue';
 import { ElMessage } from 'element-plus';
-import { uploadList } from '@/api/order/list.js';
+import { uploadList, getList } from '@/api/order/list.js';
 
 import { getDicts } from '@/api/order/index';
 
@@ -54,9 +54,39 @@ const httpRequest = (config) => {
 
 //获取this
 const option = useOption();
-const data = ref(null);
+const data = ref([]);
 const form = ref({});
+
 const pageOption = usePagingOption();
+
+const searchData1 = ref({});
+const searchData2 = ref({});
+
+const seekRef = ref(null);
+
+pageOption.change = () => {
+    let searchData = {};
+    if (seekRef.value && seekRef.value.isExpand) {
+        searchData = {
+            ...searchData2.value,
+        };
+    } else {
+        searchData = {
+            ...searchData1.value,
+        };
+    }
+    const params = {
+        ...searchData,
+        current: pageOption.currentPage,
+        size: pageOption.pageSize,
+    };
+    getList(params).then((res) => {
+        data.value = res.data;
+        pageOption.total = res.total;
+    });
+};
+
+pageOption.change();
 
 /**
  * @Description: 搜索
@@ -65,10 +95,12 @@ const pageOption = usePagingOption();
  * @return {*}
  */
 const search = (val) => {
-    console.log(val);
+    searchData1.value = val;
+    pageOption.change();
 };
 const searchClick = (val) => {
-    console.log(val);
+    searchData2.value = val;
+    pageOption.change();
 };
 
 /**
@@ -79,37 +111,5 @@ const searchClick = (val) => {
 const importClick = () => {
     console.log('导入');
 };
-/**
- * @description: 页数
- * @param {*} pageSize
- * @return {*}
- */
-const sizeChange = (pageSize) => {
-    pageOption.pageSize = pageSize;
-    // onLoad(search.value);
-};
-// const page = ref({
-//     total: 1,
-// });
-console.log(pageOption);
-data.value = [
-    {
-        id: '张三',
-        id1: 12,
-    },
-    // {
-    //     name: '李四',
-    //     sex: 13,
-    // },
-];
-function rowSave(row, done, loading) {
-    done(row);
-}
-function rowDel(row, index, done) {
-    done(row);
-}
-function rowUpdate(row, index, done, loading) {
-    done(row);
-}
 </script>
 <style lang="scss" scoped></style>
