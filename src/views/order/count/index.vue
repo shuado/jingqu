@@ -8,7 +8,7 @@
         <basic-container style="margin-bottom: 12px">
             <Seek @seek-click="search" />
         </basic-container>
-        <basic-container>
+        <basic-container v-loading="loading">
             <div class="tab-data">
                 <div v-for="item in tabData" :key="item.id" class="tab-data-item">
                     <img v-if="item.icon" :src="item.icon" />
@@ -63,130 +63,229 @@ let data = ref({
     writeOffPrice: 0,
 });
 
-const getList = (data) => {
-    getData({ ...data }).then((res) => {
-        data.value = res.data;
-    });
+const loading = ref(false);
+
+const getList = (params) => {
+    loading.value = true;
+    getData({ ...params })
+        .then((res) => {
+            data.value = res.data;
+        })
+        .finally(() => {
+            loading.value = false;
+        });
 };
 
 const search = (val) => {
     getList(val);
 };
 
-let tabData = computed(() => {
-    return [
-        {
-            id: 1,
-            icon: new URL('../../../assets/img/order/1.png', import.meta.url).href,
-            questionMark: '',
-            title: '支付订单数',
-            middleLeft: '',
-            middlRight: data.value.paymentOrderNum + '',
-            bottomLeft: '昨日：',
-            bottomRight: data.value.lastPaymentOrderNum + '',
-        },
-        {
-            id: 2,
-            icon: '',
-            questionMark: '',
-            title: '支付金额（元）',
-            middleLeft: '¥',
-            middlRight: data.value.paymentPrice + '',
-            bottomLeft: '昨日：',
-            bottomRight: data.value.lastPaymentPrice + '',
-        },
-        {
-            id: 3,
-            icon: new URL('../../../assets/img/order/2.png', import.meta.url).href,
-            questionMark: '',
-            title: '实售票数',
-            middleLeft: '',
-            middlRight: data.value.ticketsNum + '',
-            bottomLeft: '昨日：',
-            bottomRight: data.value.lastTicketsNum + '',
-        },
-        {
-            id: 4,
-            icon: '',
-            questionMark: '',
-            title: '实收金额（元）',
-            middleLeft: '',
-            middlRight: data.value.receiptsPrice + '',
-            bottomLeft: '昨日：',
-            bottomRight: data.value.lastReceiptsPrice + '',
-        },
-        {
-            id: 5,
-            icon: new URL('../../../assets/img/order/3.png', import.meta.url).href,
-            questionMark: '',
-            title: '核销票数',
-            middleLeft: '',
-            middlRight: data.value.writeOffNum + '',
-            bottomLeft: '昨日：',
-            bottomRight: data.value.lastWriteOffNum + '',
-        },
-        {
-            id: 6,
-            icon: '',
-            questionMark: '注意：核销金额是未打折的门票销售价。',
-            title: '核销金额（元）',
-            middleLeft: '',
-            middlRight: data.value.writeOffPrice + '',
-            bottomLeft: '昨日：',
-            bottomRight: data.value.lastWriteOffPrice + '',
-        },
-        {
-            id: 7,
-            icon: new URL('../../../assets/img/order/4.png', import.meta.url).href,
-            questionMark: '',
-            title: '退票数',
-            middleLeft: '',
-            middlRight: data.value.refundsNum + '',
-            bottomLeft: '昨日：',
-            bottomRight: data.value.lastRefundsNum + '',
-        },
-        {
-            id: 8,
-            icon: '',
-            questionMark: '',
-            title: '退票金额（元）',
-            middleLeft: '',
-            middlRight: data.value.refundAmount + '',
-            bottomLeft: '昨日：',
-            bottomRight: data.value.lastRefundAmount + '',
-        },
-        // {
-        //     id: 9,
-        //     icon: new URL('../../../assets/img/order/5.png', import.meta.url).href,
-        //     questionMark: '',
-        //     title: '景区入园人数',
-        //     middleLeft: '',
-        //     middlRight: data.value.enterUserNum + '',
-        //     bottomLeft: '昨日:',
-        //     bottomRight: data.value.lastEnterUserNum + '',
-        // },
-        // {
-        //     id: 10,
-        //     icon: '',
-        //     questionMark: '',
-        //     title: '景区出园人数',
-        //     middleLeft: '',
-        //     middlRight: data.value.outUserNum + '',
-        //     bottomLeft: '昨日：',
-        //     bottomRight: data.value.lastOutUserNum + '',
-        // },
-        // {
-        //     id: 11,
-        //     icon: '',
-        //     questionMark: '景区在线人数 = 景区入园人数 - 景区出园人数',
-        //     title: '景区在园人数',
-        //     middleLeft: '',
-        //     middlRight: data.value.inUserNum + '',
-        //     bottomLeft: '',
-        //     bottomRight: '',
-        // },
-    ];
-});
+let tabData = ref([
+    {
+        id: 1,
+        icon: new URL('../../../assets/img/order/1.png', import.meta.url).href,
+        questionMark: '',
+        title: '支付订单数',
+        middleLeft: '',
+        middlRight: data.value.paymentOrderNum + '',
+        bottomLeft: '昨日：',
+        bottomRight: data.value.lastPaymentOrderNum + '',
+    },
+    {
+        id: 2,
+        icon: '',
+        questionMark: '',
+        title: '支付金额（元）',
+        middleLeft: '¥',
+        middlRight: data.value.paymentPrice + '',
+        bottomLeft: '昨日：',
+        bottomRight: data.value.lastPaymentPrice + '',
+    },
+    {
+        id: 3,
+        icon: new URL('../../../assets/img/order/2.png', import.meta.url).href,
+        questionMark: '',
+        title: '实售票数',
+        middleLeft: '',
+        middlRight: data.value.ticketsNum + '',
+        bottomLeft: '昨日：',
+        bottomRight: data.value.lastTicketsNum + '',
+    },
+    {
+        id: 4,
+        icon: '',
+        questionMark: '',
+        title: '实收金额（元）',
+        middleLeft: '',
+        middlRight: data.value.receiptsPrice + '',
+        bottomLeft: '昨日：',
+        bottomRight: data.value.lastReceiptsPrice + '',
+    },
+    {
+        id: 5,
+        icon: new URL('../../../assets/img/order/3.png', import.meta.url).href,
+        questionMark: '',
+        title: '核销票数',
+        middleLeft: '',
+        middlRight: data.value.writeOffNum + '',
+        bottomLeft: '昨日：',
+        bottomRight: data.value.lastWriteOffNum + '',
+    },
+    {
+        id: 6,
+        icon: '',
+        questionMark: '注意：核销金额是未打折的门票销售价。',
+        title: '核销金额（元）',
+        middleLeft: '',
+        middlRight: data.value.writeOffPrice + '',
+        bottomLeft: '昨日：',
+        bottomRight: data.value.lastWriteOffPrice + '',
+    },
+    {
+        id: 7,
+        icon: new URL('../../../assets/img/order/4.png', import.meta.url).href,
+        questionMark: '',
+        title: '退票数',
+        middleLeft: '',
+        middlRight: data.value.refundsNum + '',
+        bottomLeft: '昨日：',
+        bottomRight: data.value.lastRefundsNum + '',
+    },
+    {
+        id: 8,
+        icon: '',
+        questionMark: '',
+        title: '退票金额（元）',
+        middleLeft: '',
+        middlRight: data.value.refundAmount + '',
+        bottomLeft: '昨日：',
+        bottomRight: data.value.lastRefundAmount + '',
+    },
+    // {
+    //     id: 9,
+    //     icon: new URL('../../../assets/img/order/5.png', import.meta.url).href,
+    //     questionMark: '',
+    //     title: '景区入园人数',
+    //     middleLeft: '',
+    //     middlRight: data.value.enterUserNum + '',
+    //     bottomLeft: '昨日:',
+    //     bottomRight: data.value.lastEnterUserNum + '',
+    // },
+    // {
+    //     id: 10,
+    //     icon: '',
+    //     questionMark: '',
+    //     title: '景区出园人数',
+    //     middleLeft: '',
+    //     middlRight: data.value.outUserNum + '',
+    //     bottomLeft: '昨日：',
+    //     bottomRight: data.value.lastOutUserNum + '',
+    // },
+    // {
+    //     id: 11,
+    //     icon: '',
+    //     questionMark: '景区在线人数 = 景区入园人数 - 景区出园人数',
+    //     title: '景区在园人数',
+    //     middleLeft: '',
+    //     middlRight: data.value.inUserNum + '',
+    //     bottomLeft: '',
+    //     bottomRight: '',
+    // },
+]);
+
+watch(
+    () => data.value,
+    (newVal, oldVal) => {
+        tabData.value = [
+            {
+                id: 1,
+                icon: new URL('../../../assets/img/order/1.png', import.meta.url).href,
+                questionMark: '',
+                title: '支付订单数',
+                middleLeft: '',
+                middlRight: newVal.paymentOrderNum + '',
+                bottomLeft: '昨日：',
+                bottomRight: newVal.lastPaymentOrderNum + '',
+            },
+            {
+                id: 2,
+                icon: '',
+                questionMark: '',
+                title: '支付金额（元）',
+                middleLeft: '¥',
+                middlRight: newVal.paymentPrice + '',
+                bottomLeft: '昨日：',
+                bottomRight: newVal.lastPaymentPrice + '',
+            },
+            {
+                id: 3,
+                icon: new URL('../../../assets/img/order/2.png', import.meta.url).href,
+                questionMark: '',
+                title: '实售票数',
+                middleLeft: '',
+                middlRight: newVal.ticketsNum + '',
+                bottomLeft: '昨日：',
+                bottomRight: newVal.lastTicketsNum + '',
+            },
+            {
+                id: 4,
+                icon: '',
+                questionMark: '',
+                title: '实收金额（元）',
+                middleLeft: '',
+                middlRight: newVal.receiptsPrice + '',
+                bottomLeft: '昨日：',
+                bottomRight: newVal.lastReceiptsPrice + '',
+            },
+            {
+                id: 5,
+                icon: new URL('../../../assets/img/order/3.png', import.meta.url).href,
+                questionMark: '',
+                title: '核销票数',
+                middleLeft: '',
+                middlRight: newVal.writeOffNum + '',
+                bottomLeft: '昨日：',
+                bottomRight: newVal.lastWriteOffNum + '',
+            },
+            {
+                id: 6,
+                icon: '',
+                questionMark: '注意：核销金额是未打折的门票销售价。',
+                title: '核销金额（元）',
+                middleLeft: '',
+                middlRight: newVal.writeOffPrice + '',
+                bottomLeft: '昨日：',
+                bottomRight: newVal.lastWriteOffPrice + '',
+            },
+            {
+                id: 7,
+                icon: new URL('../../../assets/img/order/4.png', import.meta.url).href,
+                questionMark: '',
+                title: '退票数',
+                middleLeft: '',
+                middlRight: newVal.refundsNum + '',
+                bottomLeft: '昨日：',
+                bottomRight: newVal.lastRefundsNum + '',
+            },
+            {
+                id: 8,
+                icon: '',
+                questionMark: '',
+                title: '退票金额（元）',
+                middleLeft: '',
+                middlRight: newVal.refundAmount + '',
+                bottomLeft: '昨日：',
+                bottomRight: newVal.lastRefundAmount + '',
+            },
+        ];
+
+        console.log(tabData.value);
+        console.log(data.value);
+    },
+    {
+        deep: true,
+    },
+);
 </script>
 <style lang="scss" scoped>
 .tab-data {
