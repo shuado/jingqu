@@ -10,7 +10,7 @@
         </el-upload>
         <advanced-search @search-click="searchClick" />
         <calculate ref="calculateRef" />
-        <avue-crud ref="crudRef" v-model="form" :page="pageOption" :option="option" :data="data" @current-change="pageOption.currentChange" @size-change="pageOption.sizeChange"> </avue-crud>
+        <avue-crud ref="crudRef" v-model="form" :table-loading="loading" :page="pageOption" :option="option" :data="data" @current-change="pageOption.currentChange" @size-change="pageOption.sizeChange"> </avue-crud>
     </basic-container>
 </template>
 <script setup>
@@ -21,7 +21,7 @@ import useOption from './hooks/useOption';
 import calculate from './components/calculate.vue';
 
 import { getDicts } from '@/api/order/index';
-
+const loading = ref(false);
 getDicts().then((res) => {
     localStorage.setItem('dicts-all', JSON.stringify(res.data));
 });
@@ -44,6 +44,7 @@ const httpRequest = (config) => {
     uploadList(formData)
         .then((res) => {
             ElMessage.success('上传成功');
+            pageOption.change();
         })
         .catch((err) => {
             ElMessage.error('上传失败');
@@ -93,19 +94,24 @@ pageOption.change = () => {
     calculateRef.value.pageData.fare = 0;
     calculateRef.value.pageData.discountedPrice = 0;
     calculateRef.value.pageData.settlementPrice = 0;
-    getList(params).then((res) => {
-        data.value = res.data;
+    loading.value = true;
+    getList(params)
+        .then((res) => {
+            data.value = res.data;
 
-        pageOption.total = res.total;
-        console.log(pageOption);
-        console.log('======');
+            pageOption.total = res.total;
+            console.log(pageOption);
+            console.log('======');
 
-        data.value.forEach((item) => {
-            calculateRef.value.pageData.fare += item.fare || 0;
-            calculateRef.value.pageData.discountedPrice += item.discountedPrice || 0;
-            calculateRef.value.pageData.settlementPrice += item.settlementPrice || 0;
+            data.value.forEach((item) => {
+                calculateRef.value.pageData.fare += item.fare || 0;
+                calculateRef.value.pageData.discountedPrice += item.discountedPrice || 0;
+                calculateRef.value.pageData.settlementPrice += item.settlementPrice || 0;
+            });
+        })
+        .finally(() => {
+            loading.value = false;
         });
-    });
 };
 onMounted(() => {
     pageOption.change();

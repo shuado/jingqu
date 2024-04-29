@@ -9,7 +9,7 @@
             <el-button :icon="Upload" :loading="uploadLoading" style="margin-bottom: 12px" type="success" @click="importClick">导入</el-button>
         </el-upload>
         <seek ref="seekRef" @seek-click="search"> <advanced-search @search-click="searchClick" /></seek>
-        <avue-crud ref="crudRef" v-model="form" :page="pageOption" :option="option" :data="data" @current-change="pageOption.currentChange" @size-change="pageOption.sizeChange"> </avue-crud>
+        <avue-crud ref="crudRef" v-model="form" :table-loading="loading" :page="pageOption" :option="option" :data="data" @current-change="pageOption.currentChange" @size-change="pageOption.sizeChange"> </avue-crud>
     </basic-container>
 </template>
 <script setup>
@@ -43,6 +43,7 @@ const httpRequest = (config) => {
     uploadList(formData)
         .then((res) => {
             ElMessage.success('上传成功');
+            pageOption.change();
         })
         .catch((err) => {
             ElMessage.error('上传失败');
@@ -64,6 +65,7 @@ const searchData2 = ref({});
 
 const seekRef = ref(null);
 
+const loading = ref(false);
 pageOption.change = () => {
     let searchData = {};
     if (seekRef.value && seekRef.value.isExpand) {
@@ -80,10 +82,16 @@ pageOption.change = () => {
         current: pageOption.currentPage,
         size: pageOption.pageSize,
     };
-    getList(params).then((res) => {
-        data.value = res.data;
-        pageOption.total = res.total;
-    });
+    loading.value = true;
+
+    getList(params)
+        .then((res) => {
+            data.value = res.data;
+            pageOption.total = res.total;
+        })
+        .finally(() => {
+            loading.value = false;
+        });
 };
 
 pageOption.change();

@@ -11,7 +11,7 @@
         <seek ref="seekRef" @seek-click="search">
             <advanced-search @search-click="searchClick" />
         </seek>
-        <avue-crud ref="crudRef" v-model="form" :page="pageOption" :option="option" :data="data" @current-change="pageOption.currentChange" @size-change="pageOption.sizeChange"> </avue-crud>
+        <avue-crud ref="crudRef" v-model="form" :table-loading="loading" :page="pageOption" :option="option" :data="data" @current-change="pageOption.currentChange" @size-change="pageOption.sizeChange"> </avue-crud>
     </basic-container>
 </template>
 <script setup>
@@ -26,6 +26,7 @@ import useOption from './hooks/useOption';
 const option = useOption();
 const data = ref([]);
 const form = ref({});
+let loading = ref(false);
 
 const pageOption = usePagingOption();
 
@@ -45,6 +46,7 @@ const httpRequest = (config) => {
     uploadList(formData)
         .then((res) => {
             ElMessage.success('上传成功');
+            pageOption.change();
         })
         .catch((err) => {
             ElMessage.error('上传失败');
@@ -75,10 +77,15 @@ pageOption.change = () => {
         current: pageOption.currentPage,
         size: pageOption.pageSize,
     };
-    getList(params).then((res) => {
-        data.value = res.data;
-        pageOption.total = res.total;
-    });
+    loading.value = true;
+    getList(params)
+        .then((res) => {
+            data.value = res.data;
+            pageOption.total = res.total;
+        })
+        .finally(() => {
+            loading.value = false;
+        });
 };
 
 pageOption.change();
