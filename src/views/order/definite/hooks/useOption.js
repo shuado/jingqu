@@ -49,13 +49,11 @@ const option = {
             label: '订单号',
             prop: 'orderNum',
             width: 200,
-            type: 'number',
         },
         {
             label: '票号',
             width: 200,
-            type: 'ticketCollectionNum',
-            prop: 'id2',
+            prop: 'ticketCollectionNum',
         },
 
         {
@@ -72,13 +70,13 @@ const option = {
         {
             label: '购票人手机号',
             width: 200,
-            type: 'number',
+
             prop: 'ticketBuyerUserPhone',
         },
         {
             label: '购票人身份证',
             width: 200,
-            type: 'number',
+
             prop: 'ticketBuyerUserId',
         },
 
@@ -91,13 +89,13 @@ const option = {
         {
             label: '游客身份证',
             width: 200,
-            type: 'number',
+
             prop: 'touristUserName',
         },
         {
             label: '游客手机',
             width: 200,
-            type: 'number',
+
             prop: 'touristUserPhone',
         },
 
@@ -115,17 +113,17 @@ const option = {
 
         {
             label: '票价',
-            type: 'number',
+
             prop: 'fare',
         },
         {
             label: '折后价',
-            type: 'number',
+
             prop: 'discountedPrice',
         },
         {
             label: '结算价',
-            type: 'number',
+
             prop: 'settlementPrice',
         },
 
@@ -193,14 +191,14 @@ const option = {
 
         {
             label: '打印次数',
-            type: 'number',
+
             prop: 'printNum',
         },
 
         {
             label: '打印来源',
             width: 200,
-            type: 'number',
+
             prop: 'printSource',
         },
         {
@@ -213,7 +211,7 @@ const option = {
         },
         {
             label: '卡号',
-            type: 'number',
+
             width: 200,
             prop: 'cardNum',
         },

@@ -9,5 +9,6 @@ const TIME_OUT = 30 * 1000; // 超时时间
 
 // 用户头部请求头
 let prefix = '/qq-oms';
+// let prefix = '/';
 
 export { BASE_URL, TIME_OUT, prefix };

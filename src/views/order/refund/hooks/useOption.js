@@ -49,18 +49,17 @@ const option = {
             label: '退款号',
             prop: 'refundNum',
             width: 200,
-            type: 'number',
         },
         {
             label: '订单号',
             width: 200,
-            type: 'number',
+
             prop: 'orderNum',
         },
         {
             label: '票号',
             width: 200,
-            type: 'number',
+
             prop: 'ticketCollectionNum',
         },
 
@@ -78,26 +77,26 @@ const option = {
 
         {
             label: '退票数',
-            type: 'number',
+
             prop: 'refundTotalNum',
         },
 
         {
             label: '退款金额',
             width: 200,
-            type: 'number',
+
             prop: 'refundAmount',
         },
         {
             label: '退款费率',
             width: 200,
-            type: 'number',
+
             prop: 'refundRate',
         },
         {
             label: '退款手续费',
             width: 200,
-            type: 'number',
+
             prop: 'refundHandlingFee',
         },
         {

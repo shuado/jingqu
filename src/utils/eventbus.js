@@ -4,5 +4,5 @@
  * @FilePath: /quzhou-carbon/src/utils/eventbus.js
  */
 // vue3 页面全局事件总成
-import mitt from 'mitt'
-export default mitt()
+import mitt from 'mitt';
+export default mitt();

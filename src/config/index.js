@@ -15,6 +15,7 @@ const ADMIN = 'ADMIN';
 
 // 上传文件地址
 const UPDATEPATH = import.meta.env.VITE_BASE_URL + '/qq-oms/acc/uploadAcc';
+// const UPDATEPATH = import.meta.env.VITE_BASE_URL + '/acc/uploadAcc';
 
 // 菜单主题（选中颜色、hover颜色前往MenuLeft组件修改）
 const themeList = [
