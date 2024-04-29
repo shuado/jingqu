@@ -4,31 +4,37 @@
  * @Description:
 -->
 <template>
-    <basic-container>
-        <div class="tab-data">
-            <div v-for="item in tabData" :key="item.id" class="tab-data-item">
-                <img v-if="item.icon" :src="item.icon" />
-                <div class="text-item">
-                    <div v-if="item.title" class="title-item">
-                        {{ item.title }}
-                        <el-tooltip v-if="item.questionMark" class="box-item" effect="dark" :content="item.questionMark" placement="right">
-                            <img src="../../../assets/img/order/6.png" />
-                        </el-tooltip>
-                    </div>
-                    <div v-if="item.middleLeft || item.middlRight" class="middle-item">
-                        <span v-if="item.middleLeft">{{ item.middleLeft == 'null' ? '-' : item.middleLeft }} </span>
-                        <span v-if="item.middlRight">{{ item.middlRight == 'null' ? '-' : item.middlRight }}</span>
-                    </div>
-                    <div v-if="item.bottomLeft || item.bottomRight" class="bottom-item">
-                        <span v-if="item.bottomLeft">{{ item.bottomLeft == 'null' ? '-' : item.bottomLeft }} </span>
-                        <span v-if="item.bottomRight">{{ item.bottomRight == 'null' ? '-' : item.bottomRight }}</span>
+    <div>
+        <basic-container style="margin-bottom: 12px">
+            <Seek @seek-click="search" />
+        </basic-container>
+        <basic-container>
+            <div class="tab-data">
+                <div v-for="item in tabData" :key="item.id" class="tab-data-item">
+                    <img v-if="item.icon" :src="item.icon" />
+                    <div class="text-item">
+                        <div v-if="item.title" class="title-item">
+                            {{ item.title }}
+                            <el-tooltip v-if="item.questionMark" class="box-item" effect="dark" :content="item.questionMark" placement="right">
+                                <img src="../../../assets/img/order/6.png" />
+                            </el-tooltip>
+                        </div>
+                        <div v-if="item.middleLeft || item.middlRight" class="middle-item">
+                            <span v-if="item.middleLeft">{{ item.middleLeft == 'null' ? '-' : item.middleLeft }} </span>
+                            <span v-if="item.middlRight">{{ item.middlRight == 'null' ? '-' : item.middlRight }}</span>
+                        </div>
+                        <div v-if="item.bottomLeft || item.bottomRight" class="bottom-item">
+                            <span v-if="item.bottomLeft">{{ item.bottomLeft == 'null' ? '-' : item.bottomLeft }} </span>
+                            <span v-if="item.bottomRight">{{ item.bottomRight == 'null' ? '-' : item.bottomRight }}</span>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </basic-container>
+        </basic-container>
+    </div>
 </template>
 <script setup>
+import Seek from './components/seek.vue';
 import { dayjs } from 'element-plus';
 
 import { getData } from '@/api/order/count.js';
@@ -56,12 +62,16 @@ let data = ref({
     writeOffNum: 0,
     writeOffPrice: 0,
 });
-getData({
-    orderTimeStart: dayjs().format('YYYY-MM-DD 00:00:00'),
-    orderTimeEnd: dayjs().format('YYYY-MM-DD 23:59:59'),
-}).then((res) => {
-    data.value = res.data;
-});
+
+const getList = (data) => {
+    getData({ ...data }).then((res) => {
+        data.value = res.data;
+    });
+};
+
+const search = (val) => {
+    getList(val);
+};
 
 let tabData = computed(() => {
     return [
