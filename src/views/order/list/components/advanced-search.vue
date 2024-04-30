@@ -85,6 +85,7 @@ const formInline = reactive({
 watch(
     () => formInline.orderTime,
     (val) => {
+        console.log(val);
         if (val && val[0] && val[1]) {
             formInline.orderTimeStart = val[0] + ' 00:00:00';
             formInline.orderTimeEnd = val[1] + ' 23:59:59';
@@ -92,6 +93,7 @@ watch(
             formInline.orderTimeStart = '';
             formInline.orderTimeEnd = '';
         }
+        console.log(formInline);
     },
     {
         deep: true,
@@ -119,10 +121,6 @@ getDicts().then(({ data: res }) => {
 
 const emit = defineEmits(['searchClick']);
 const onSubmit = () => {
-    if (formInline.orderTime && formInline.orderTime.length > 1) {
-        formInline.orderTimeStart = formInline.orderTime[0];
-        formInline.orderTimeEnd = formInline.orderTime[1];
-    }
     emit('searchClick', formInline);
 };
 

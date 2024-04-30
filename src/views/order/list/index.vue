@@ -107,6 +107,7 @@ const search = (val) => {
     pageOption.change();
 };
 const searchClick = (val) => {
+    console.log(val);
     searchData2.value = val;
     pageOption.change();
 };

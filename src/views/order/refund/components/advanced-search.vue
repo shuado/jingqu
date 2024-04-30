@@ -75,10 +75,6 @@ getDicts().then(({ data: res }) => {
 
 const emit = defineEmits(['searchClick']);
 const onSubmit = () => {
-    if (formInline.refundTime && formInline.refundTime.length > 1) {
-        formInline.refundTimeStart = formInline.refundTime[0];
-        formInline.refundTimeEnd = formInline.refundTime[1];
-    }
     emit('searchClick', formInline);
 };
 
