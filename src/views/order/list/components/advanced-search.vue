@@ -85,7 +85,6 @@ const formInline = reactive({
 watch(
     () => formInline.orderTime,
     (val) => {
-        console.log(val);
         if (val && val[0] && val[1]) {
             formInline.orderTimeStart = val[0] + ' 00:00:00';
             formInline.orderTimeEnd = val[1] + ' 23:59:59';
@@ -93,7 +92,6 @@ watch(
             formInline.orderTimeStart = '';
             formInline.orderTimeEnd = '';
         }
-        console.log(formInline);
     },
     {
         deep: true,
@@ -127,7 +125,9 @@ const onSubmit = () => {
 const form = ref({});
 const onReset = () => {
     form.value.resetFields();
-    emit('searchClick', formInline);
+    nextTick(() => {
+        emit('searchClick', formInline);
+    });
 };
 </script>
 <style lang="scss" scope>

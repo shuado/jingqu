@@ -11,7 +11,7 @@
 <template>
     <div class="advanced-search">
         <el-form ref="form" :inline="true" :model="formInline">
-            <el-form-item label="退票日期" prop="value1">
+            <el-form-item label="退票日期" prop="refundTime">
                 <el-date-picker v-model="formInline.refundTime" type="daterange" range-separator="-" start-placeholder="开始时间" format="YYYY-MM-DD" value-format="YYYY-MM-DD" end-placeholder="结束时间" />
             </el-form-item>
 
@@ -81,7 +81,9 @@ const onSubmit = () => {
 const form = ref({});
 const onReset = () => {
     form.value.resetFields();
-    emit('searchClick', formInline);
+    nextTick(() => {
+        emit('searchClick', formInline);
+    });
 };
 </script>
 <style lang="scss" scope>

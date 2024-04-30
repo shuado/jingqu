@@ -204,7 +204,7 @@ getDicts().then(({ data: res }) => {
     ChannelType.value = res.ChannelType || [];
     PaymentMethodType.value = res.PaymentMethodType || [];
     OrderStatus.value = res.OrderStatus || [];
-    TicketStatus.value = res.OrderStatus || [];
+    TicketStatus.value = res.TicketStatus || [];
 });
 
 const emit = defineEmits(['searchClick']);
@@ -215,7 +215,9 @@ const onSubmit = () => {
 const form = ref({});
 const onReset = () => {
     form.value.resetFields();
-    emit('searchClick', formInline);
+    nextTick(() => {
+        emit('searchClick', formInline);
+    });
 };
 </script>
 <style lang="scss" scope>
