@@ -8,26 +8,31 @@
         <basic-container style="margin-bottom: 12px">
             <Seek @seek-click="search" />
         </basic-container>
-        <basic-container v-loading="loading">
-            <div class="tab-data">
-                <div v-for="item in tabData" :key="item.id" class="tab-data-item">
-                    <img v-if="item.icon" :src="item.icon" />
-                    <div class="text-item">
-                        <div v-if="item.title" class="title-item">
-                            {{ item.title }}
-                            <el-tooltip v-if="item.questionMark" class="box-item" effect="dark" :content="item.questionMark" placement="right">
-                                <img src="../../../assets/img/order/6.png" />
-                            </el-tooltip>
-                        </div>
-                        <div v-if="item.middleLeft || item.middlRight" class="middle-item">
-                            <span v-if="item.middleLeft">{{ item.middleLeft == 'null' ? '-' : item.middleLeft }} </span>
-                            <span v-if="item.middlRight">{{ item.middlRight == 'null' ? '-' : item.middlRight }}</span>
-                        </div>
-                        <div v-if="item.bottomLeft || item.bottomRight" class="bottom-item">
-                            <span v-if="item.bottomLeft">{{ item.bottomLeft == 'null' ? '-' : item.bottomLeft }} </span>
-                            <span v-if="item.bottomRight">{{ item.bottomRight == 'null' ? '-' : item.bottomRight }}</span>
+        <basic-container v-loading="loading" style="margin-bottom: 12px">
+            <div class="contaniner-com">
+                <div class="tab-data">
+                    <div v-for="item in tabData" :key="item.id" class="tab-data-item">
+                        <img v-if="item.icon" :src="item.icon" />
+                        <div class="text-item">
+                            <div v-if="item.title" class="title-item">
+                                {{ item.title }}
+                                <el-tooltip v-if="item.questionMark" class="box-item" effect="dark" :content="item.questionMark" placement="right">
+                                    <img src="../../../assets/img/order/6.png" />
+                                </el-tooltip>
+                            </div>
+                            <div v-if="item.middleLeft || item.middlRight" class="middle-item">
+                                <span v-if="item.middleLeft">{{ item.middleLeft == 'null' ? '-' : item.middleLeft }} </span>
+                                <span v-if="item.middlRight">{{ item.middlRight == 'null' ? '-' : item.middlRight }}</span>
+                            </div>
+                            <div v-if="item.bottomLeft || item.bottomRight" class="bottom-item">
+                                <span v-if="item.bottomLeft">{{ item.bottomLeft == 'null' ? '-' : item.bottomLeft }} </span>
+                                <span v-if="item.bottomRight">{{ item.bottomRight == 'null' ? '-' : item.bottomRight }}</span>
+                            </div>
                         </div>
                     </div>
+                </div>
+                <div class="tab-echart">
+                    <base-charts :option="option" />
                 </div>
             </div>
         </basic-container>
@@ -35,6 +40,7 @@
 </template>
 <script setup>
 import Seek from './components/seek.vue';
+import BaseCharts from '@/components/base-charts/index.vue';
 import { dayjs } from 'element-plus';
 
 import { getData } from '@/api/order/count.js';
@@ -100,26 +106,6 @@ let tabData = ref([
         middlRight: data.value.paymentPrice + '',
         bottomLeft: '昨日：',
         bottomRight: data.value.lastPaymentPrice + '',
-    },
-    {
-        id: 3,
-        icon: new URL('../../../assets/img/order/2.png', import.meta.url).href,
-        questionMark: '',
-        title: '实售票数',
-        middleLeft: '',
-        middlRight: data.value.ticketsNum + '',
-        bottomLeft: '昨日：',
-        bottomRight: data.value.lastTicketsNum + '',
-    },
-    {
-        id: 4,
-        icon: '',
-        questionMark: '',
-        title: '实收金额（元）',
-        middleLeft: '',
-        middlRight: data.value.receiptsPrice + '',
-        bottomLeft: '昨日：',
-        bottomRight: data.value.lastReceiptsPrice + '',
     },
     {
         id: 5,
@@ -193,6 +179,49 @@ let tabData = ref([
     // },
 ]);
 
+let option = ref({
+    tooltip: {
+        trigger: 'item',
+    },
+    legend: {
+        top: '5%',
+        left: 'center',
+    },
+    series: [
+        {
+            name: '渠道订单量',
+            type: 'pie',
+            radius: ['35%', '75%'],
+            avoidLabelOverlap: false,
+            itemStyle: {
+                borderRadius: 10,
+                borderColor: '#fff',
+                borderWidth: 2,
+            },
+            label: {
+                position: 'inner',
+                formatter: '{c} \n (占比 {d}%)',
+                textStyle: {
+                    color: '#343434',
+                    // fontWeight: 'bold',
+                    fontSize: 14,
+                },
+            },
+            emphasis: {
+                label: {
+                    show: true,
+                    fontSize: 20,
+                    fontWeight: 'bold',
+                },
+            },
+            labelLine: {
+                show: false,
+            },
+            data: [],
+        },
+    ],
+});
+
 watch(
     () => data.value,
     (newVal, oldVal) => {
@@ -216,26 +245,6 @@ watch(
                 middlRight: newVal.paymentPrice + '',
                 bottomLeft: '昨日：',
                 bottomRight: newVal.lastPaymentPrice + '',
-            },
-            {
-                id: 3,
-                icon: new URL('../../../assets/img/order/2.png', import.meta.url).href,
-                questionMark: '',
-                title: '实售票数',
-                middleLeft: '',
-                middlRight: newVal.ticketsNum + '',
-                bottomLeft: '昨日：',
-                bottomRight: newVal.lastTicketsNum + '',
-            },
-            {
-                id: 4,
-                icon: '',
-                questionMark: '',
-                title: '实收金额（元）',
-                middleLeft: '',
-                middlRight: newVal.receiptsPrice + '',
-                bottomLeft: '昨日：',
-                bottomRight: newVal.lastReceiptsPrice + '',
             },
             {
                 id: 5,
@@ -279,8 +288,13 @@ watch(
             },
         ];
 
-        console.log(tabData.value);
-        console.log(data.value);
+        console.log(newVal);
+        option.value.series[0].data = newVal.channels.map((item) => {
+            return {
+                name: item.channelCn,
+                value: item.channelOrderNum,
+            };
+        });
     },
     {
         deep: true,
@@ -288,39 +302,49 @@ watch(
 );
 </script>
 <style lang="scss" scoped>
-.tab-data {
+.contaniner-com {
     width: 100%;
     height: fit-content;
     display: flex;
-    flex-wrap: wrap;
-    .tab-data-item {
-        width: 25%;
-        padding: 12px;
-        box-sizing: border-box;
-        height: 160px;
-        // background-color: aliceblue;
+
+    .tab-data {
+        width: 60%;
+        height: fit-content;
         display: flex;
-        align-items: center;
-        .text-item {
-            color: #666;
-            margin-left: 12px;
-            font-size: 12px;
-            .title-item {
-                position: relative;
-                img {
-                    width: 12px;
-                    cursor: pointer;
+        flex-wrap: wrap;
+        .tab-data-item {
+            width: 25%;
+            padding: 12px;
+            box-sizing: border-box;
+            height: 160px;
+            // background-color: aliceblue;
+            display: flex;
+            align-items: center;
+            .text-item {
+                color: #666;
+                margin-left: 12px;
+                font-size: 12px;
+                .title-item {
+                    position: relative;
+                    img {
+                        width: 12px;
+                        cursor: pointer;
+                    }
+                }
+                .middle-item {
+                    color: #333;
+                    font-size: 24px;
+                }
+                .bottom-item {
+                    color: #999;
+                    font-size: 12px;
                 }
             }
-            .middle-item {
-                color: #333;
-                font-size: 24px;
-            }
-            .bottom-item {
-                color: #999;
-                font-size: 12px;
-            }
         }
+    }
+    .tab-echart {
+        width: 40%;
+        min-height: 100px;
     }
 }
 </style>

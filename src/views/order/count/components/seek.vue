@@ -6,7 +6,7 @@
 <template>
     <div class="seek-text">
         <el-row :gutter="20">
-            <el-col :span="8">
+            <el-col :span="10">
                 <el-radio-group v-model="seekData.value1">
                     <el-radio-button label="今天" value="1" />
                     <el-radio-button label="昨天" value="2" />
